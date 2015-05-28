@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="food_menu">
+    <Key>
+      <PropertyRef Name="idfood" />
+    </Key>
+    <Property Name="idfood" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="amount_available" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="food_order" Relationship="Self.fk_food_order_food_menu1" FromRole="food_menu" ToRole="food_order" />
+  </EntityType>
+  <EntityType Name="food_order">
+    <Key>
+      <PropertyRef Name="idfood_order" />
+      <PropertyRef Name="user_iduser" />
+      <PropertyRef Name="food_menu_idfood" />
+    </Key>
+    <Property Name="idfood_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="oder_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="amount" Type="Int32" Nullable="false" />
+    <Property Name="order_price" Type="Double" Nullable="false" />
+    <Property Name="user_iduser" Type="Int32" Nullable="false" />
+    <Property Name="food_menu_idfood" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="food_menu" Relationship="Self.fk_food_order_food_menu1" FromRole="food_order" ToRole="food_menu" />
+    <NavigationProperty Name="user" Relationship="Self.fk_food_order_user1" FromRole="food_order" ToRole="user" />
+  </EntityType>
+  <EntityType Name="image">
+    <Key>
+      <PropertyRef Name="idimage" />
+      <PropertyRef Name="resource_type_idresource_type" />
+    </Key>
+    <Property Name="idimage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="resource_type_idresource_type" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="resource_type" Relationship="Self.fk_image_resource_type1" FromRole="image" ToRole="resource_type" />
+  </EntityType>
+  <EntityType Name="keycard">
+    <Key>
+      <PropertyRef Name="idkeycard" />
+    </Key>
+    <Property Name="idkeycard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="access_identifier" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="resource" Relationship="Self.fk_resource_keycard1" FromRole="keycard" ToRole="resource" />
+  </EntityType>
+  <EntityType Name="location">
+    <Key>
+      <PropertyRef Name="idlocation" />
+    </Key>
+    <Property Name="idlocation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="reservation">
+    <Key>
+      <PropertyRef Name="idreservation" />
+      <PropertyRef Name="user_iduser" />
+    </Key>
+    <Property Name="idreservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="from_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="to_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+    <Property Name="type" Type="Byte" />
+    <Property Name="user_iduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.fk_reservation_user1" FromRole="reservation" ToRole="user" />
+  </EntityType>
+  <EntityType Name="resource">
+    <Key>
+      <PropertyRef Name="idresource" />
+      <PropertyRef Name="resource_type_idresource_type" />
+      <PropertyRef Name="keycard_idkeycard" />
+      <PropertyRef Name="user_iduser" />
+    </Key>
+    <Property Name="idresource" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="occupied" Type="Boolean" Nullable="false" />
+    <Property Name="available" Type="Boolean" Nullable="false" />
+    <Property Name="availability_status" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="availability_date" Type="DateTime" Precision="3" />
+    <Property Name="resource_type_idresource_type" Type="Int32" Nullable="false" />
+    <Property Name="keycard_idkeycard" Type="Int32" Nullable="false" />
+    <Property Name="user_iduser" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="keycard" Relationship="Self.fk_resource_keycard1" FromRole="resource" ToRole="keycard" />
+    <NavigationProperty Name="resource_type" Relationship="Self.fk_resource_resource_type" FromRole="resource" ToRole="resource_type" />
+    <NavigationProperty Name="user" Relationship="Self.fk_resource_user1" FromRole="resource" ToRole="user" />
+  </EntityType>
+  <EntityType Name="resource_type">
+    <Key>
+      <PropertyRef Name="idresource_type" />
+    </Key>
+    <Property Name="idresource_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="qunatity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="image" Relationship="Self.fk_image_resource_type1" FromRole="resource_type" ToRole="image" />
+    <NavigationProperty Name="resource" Relationship="Self.fk_resource_resource_type" FromRole="resource_type" ToRole="resource" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="iduser" />
+    </Key>
+    <Property Name="iduser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user_type" Type="Byte" Nullable="false" />
+    <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="activated_date" Type="DateTime" Precision="3" />
+    <Property Name="deactivated_date" Type="DateTime" Precision="3" />
+    <Property Name="confirmation_key" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="food_order" Relationship="Self.fk_food_order_user1" FromRole="user" ToRole="food_order" />
+    <NavigationProperty Name="reservation" Relationship="Self.fk_reservation_user1" FromRole="user" ToRole="reservation" />
+    <NavigationProperty Name="resource" Relationship="Self.fk_resource_user1" FromRole="user" ToRole="resource" />
+  </EntityType>
+  <EntityType Name="MSreplication_options">
+    <Key>
+      <PropertyRef Name="optname" />
+      <PropertyRef Name="value" />
+      <PropertyRef Name="major_version" />
+      <PropertyRef Name="minor_version" />
+      <PropertyRef Name="revision" />
+      <PropertyRef Name="install_failures" />
+    </Key>
+    <Property Name="optname" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="value" Type="Boolean" Nullable="false" />
+    <Property Name="major_version" Type="Int32" Nullable="false" />
+    <Property Name="minor_version" Type="Int32" Nullable="false" />
+    <Property Name="revision" Type="Int32" Nullable="false" />
+    <Property Name="install_failures" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_db">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="version" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_dbid" Type="Int16" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dbid" Type="Int16" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="version" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_dev">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="low" />
+      <PropertyRef Name="high" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="phyname" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_low" Type="Int32" />
+    <Property Name="xfallback_drive" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="low" Type="Int32" Nullable="false" />
+    <Property Name="high" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phyname" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_fallback_usg">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="segmap" />
+      <PropertyRef Name="lstart" />
+      <PropertyRef Name="sizepg" />
+      <PropertyRef Name="vstart" />
+    </Key>
+    <Property Name="xserver_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="xdttm_ins" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xdttm_last_ins_upd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="xfallback_vstart" Type="Int32" />
+    <Property Name="dbid" Type="Int16" Nullable="false" />
+    <Property Name="segmap" Type="Int32" Nullable="false" />
+    <Property Name="lstart" Type="Int32" Nullable="false" />
+    <Property Name="sizepg" Type="Int32" Nullable="false" />
+    <Property Name="vstart" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_monitor">
+    <Key>
+      <PropertyRef Name="lastrun" />
+      <PropertyRef Name="cpu_busy" />
+      <PropertyRef Name="io_busy" />
+      <PropertyRef Name="idle" />
+      <PropertyRef Name="pack_received" />
+      <PropertyRef Name="pack_sent" />
+      <PropertyRef Name="connections" />
+      <PropertyRef Name="pack_errors" />
+      <PropertyRef Name="total_read" />
+      <PropertyRef Name="total_write" />
+      <PropertyRef Name="total_errors" />
+    </Key>
+    <Property Name="lastrun" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cpu_busy" Type="Int32" Nullable="false" />
+    <Property Name="io_busy" Type="Int32" Nullable="false" />
+    <Property Name="idle" Type="Int32" Nullable="false" />
+    <Property Name="pack_received" Type="Int32" Nullable="false" />
+    <Property Name="pack_sent" Type="Int32" Nullable="false" />
+    <Property Name="connections" Type="Int32" Nullable="false" />
+    <Property Name="pack_errors" Type="Int32" Nullable="false" />
+    <Property Name="total_read" Type="Int32" Nullable="false" />
+    <Property Name="total_write" Type="Int32" Nullable="false" />
+    <Property Name="total_errors" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="spt_values">
+    <Key>
+      <PropertyRef Name="number" />
+      <PropertyRef Name="type" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="low" Type="Int32" />
+    <Property Name="high" Type="Int32" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <Association Name="fk_food_order_food_menu1">
+    <End Role="food_menu" Type="Self.food_menu" Multiplicity="1" />
+    <End Role="food_order" Type="Self.food_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="food_menu">
+        <PropertyRef Name="idfood" />
+      </Principal>
+      <Dependent Role="food_order">
+        <PropertyRef Name="food_menu_idfood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_food_order_user1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="food_order" Type="Self.food_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="food_order">
+        <PropertyRef Name="user_iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_image_resource_type1">
+    <End Role="resource_type" Type="Self.resource_type" Multiplicity="1" />
+    <End Role="image" Type="Self.image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_type">
+        <PropertyRef Name="idresource_type" />
+      </Principal>
+      <Dependent Role="image">
+        <PropertyRef Name="resource_type_idresource_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_keycard1">
+    <End Role="keycard" Type="Self.keycard" Multiplicity="1" />
+    <End Role="resource" Type="Self.resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="keycard">
+        <PropertyRef Name="idkeycard" />
+      </Principal>
+      <Dependent Role="resource">
+        <PropertyRef Name="keycard_idkeycard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_reservation_user1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="user_iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_resource_type">
+    <End Role="resource_type" Type="Self.resource_type" Multiplicity="1" />
+    <End Role="resource" Type="Self.resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_type">
+        <PropertyRef Name="idresource_type" />
+      </Principal>
+      <Dependent Role="resource">
+        <PropertyRef Name="resource_type_idresource_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_user1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="resource" Type="Self.resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="resource">
+        <PropertyRef Name="user_iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="food_menu" EntityType="Self.food_menu" />
+    <EntitySet Name="food_order" EntityType="Self.food_order" />
+    <EntitySet Name="image" EntityType="Self.image" />
+    <EntitySet Name="keycard" EntityType="Self.keycard" />
+    <EntitySet Name="location" EntityType="Self.location" />
+    <EntitySet Name="reservation" EntityType="Self.reservation" />
+    <EntitySet Name="resource" EntityType="Self.resource" />
+    <EntitySet Name="resource_type" EntityType="Self.resource_type" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" />
+    <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" />
+    <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" />
+    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" />
+    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" />
+    <EntitySet Name="spt_values" EntityType="Self.spt_values" />
+    <AssociationSet Name="fk_food_order_food_menu1" Association="Self.fk_food_order_food_menu1">
+      <End Role="food_menu" EntitySet="food_menu" />
+      <End Role="food_order" EntitySet="food_order" />
+    </AssociationSet>
+    <AssociationSet Name="fk_food_order_user1" Association="Self.fk_food_order_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="food_order" EntitySet="food_order" />
+    </AssociationSet>
+    <AssociationSet Name="fk_image_resource_type1" Association="Self.fk_image_resource_type1">
+      <End Role="resource_type" EntitySet="resource_type" />
+      <End Role="image" EntitySet="image" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_keycard1" Association="Self.fk_resource_keycard1">
+      <End Role="keycard" EntitySet="keycard" />
+      <End Role="resource" EntitySet="resource" />
+    </AssociationSet>
+    <AssociationSet Name="fk_reservation_user1" Association="Self.fk_reservation_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_resource_type" Association="Self.fk_resource_resource_type">
+      <End Role="resource_type" EntitySet="resource_type" />
+      <End Role="resource" EntitySet="resource" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_user1" Association="Self.fk_resource_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="resource" EntitySet="resource" />
+    </AssociationSet>
+    <FunctionImport Name="sp_MScleanupmergepublisher" />
+    <FunctionImport Name="sp_MSrepl_startup" />
+  </EntityContainer>
+</Schema>

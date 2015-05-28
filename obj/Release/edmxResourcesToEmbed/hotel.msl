@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hotelModelStoreContainer" CdmEntityContainer="hotelEntities">
+    <EntitySetMapping Name="food_menu">
+      <EntityTypeMapping TypeName="hotelModel.food_menu">
+        <MappingFragment StoreEntitySet="food_menu">
+          <ScalarProperty Name="idfood" ColumnName="idfood" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount_available" ColumnName="amount_available" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="food_order">
+      <EntityTypeMapping TypeName="hotelModel.food_order">
+        <MappingFragment StoreEntitySet="food_order">
+          <ScalarProperty Name="idfood_order" ColumnName="idfood_order" />
+          <ScalarProperty Name="order_name" ColumnName="order_name" />
+          <ScalarProperty Name="oder_date" ColumnName="oder_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="order_price" ColumnName="order_price" />
+          <ScalarProperty Name="user_iduser" ColumnName="user_iduser" />
+          <ScalarProperty Name="food_menu_idfood" ColumnName="food_menu_idfood" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="image">
+      <EntityTypeMapping TypeName="hotelModel.image">
+        <MappingFragment StoreEntitySet="image">
+          <ScalarProperty Name="idimage" ColumnName="idimage" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="resource_type_idresource_type" ColumnName="resource_type_idresource_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="keycard">
+      <EntityTypeMapping TypeName="hotelModel.keycard">
+        <MappingFragment StoreEntitySet="keycard">
+          <ScalarProperty Name="idkeycard" ColumnName="idkeycard" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="access_identifier" ColumnName="access_identifier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="location">
+      <EntityTypeMapping TypeName="hotelModel.location">
+        <MappingFragment StoreEntitySet="location">
+          <ScalarProperty Name="idlocation" ColumnName="idlocation" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservation">
+      <EntityTypeMapping TypeName="hotelModel.reservation">
+        <MappingFragment StoreEntitySet="reservation">
+          <ScalarProperty Name="idreservation" ColumnName="idreservation" />
+          <ScalarProperty Name="from_date" ColumnName="from_date" />
+          <ScalarProperty Name="to_date" ColumnName="to_date" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="user_iduser" ColumnName="user_iduser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource">
+      <EntityTypeMapping TypeName="hotelModel.resource">
+        <MappingFragment StoreEntitySet="resource">
+          <ScalarProperty Name="idresource" ColumnName="idresource" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="occupied" ColumnName="occupied" />
+          <ScalarProperty Name="available" ColumnName="available" />
+          <ScalarProperty Name="availability_status" ColumnName="availability_status" />
+          <ScalarProperty Name="availability_date" ColumnName="availability_date" />
+          <ScalarProperty Name="resource_type_idresource_type" ColumnName="resource_type_idresource_type" />
+          <ScalarProperty Name="keycard_idkeycard" ColumnName="keycard_idkeycard" />
+          <ScalarProperty Name="user_iduser" ColumnName="user_iduser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource_type">
+      <EntityTypeMapping TypeName="hotelModel.resource_type">
+        <MappingFragment StoreEntitySet="resource_type">
+          <ScalarProperty Name="idresource_type" ColumnName="idresource_type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qunatity" ColumnName="qunatity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="hotelModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="activated_date" ColumnName="activated_date" />
+          <ScalarProperty Name="deactivated_date" ColumnName="deactivated_date" />
+          <ScalarProperty Name="confirmation_key" ColumnName="confirmation_key" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

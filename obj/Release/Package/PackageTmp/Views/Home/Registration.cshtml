@@ -1,0 +1,61 @@
+﻿ @{
+                ViewBag.Title = "Registration";
+            }
+            <style>
+                input{
+                    padding:5px;
+                    border:1px solid #A5A5A5;
+                }
+                input.ng-dirty.ng-invalid {
+                    border:1px solid red;
+                    background-color:rgb(255, 244, 244);
+                }
+                .error {
+                    color:red;
+                }
+   
+            </style>
+            <h2>HotelNWT Registration Page</h2>
+            <div ng-controller="RegistrationController">
+                <form novalidate name="f1" ng-submit="SaveData(User)">
+                    <div style="color:red">{{message}}</div>
+                    <table>
+                        <tr>
+                            <td>Username : </td>
+                            <td>
+                                <input type="text" ng-model="User.Username" name="username" ng-class="submitted?'ng-dirty':''" required autofocus />
+                                <span class="error" ng-show="(f1.username.$dirty || submitted) && f1.username.$error.required" >Username required!</span>
+ 
+                                <!-- here (f1.uFullName.$dirty || submitted) means if submit button clicked or it is dirty -->
+                            </td>
+                       </tr>
+                        <tr>
+                            <td>Email : </td>
+                            <td>
+                                <input type="email" ng-model="User.Email" name="uEmail" ng-class="submitted?'ng-dirty':''" /> <!-- Not required-->
+                                <span class="error" ng-show="(f1.uEmail.$dirty || submitted) && f1.uEmail.$error.email">Email not valid!</span>
+                   
+                                @* here f1.uEmailID.$error.email will check is provided email id valid or not *@
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Password : </td>
+                            <td>
+                                <input type="password" ng-model="User.Password" name="uPassword" ng-class="submitted?'ng-dirty':''" required />
+                                <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">Password required!</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" value="{{submitText}}" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+ 
+            @section Scripts{
+                <script src="~/Scripts/AngularControllers/RegistrationController.js"></script>
+            }

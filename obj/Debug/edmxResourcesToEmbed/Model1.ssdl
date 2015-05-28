@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="food_menu">
+    <Key>
+      <PropertyRef Name="idfood" />
+    </Key>
+    <Property Name="idfood" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="45" />
+    <Property Name="amount_available" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="food_order">
+    <Key>
+      <PropertyRef Name="idfood_order" />
+      <PropertyRef Name="user_iduser" />
+      <PropertyRef Name="food_menu_idfood" />
+    </Key>
+    <Property Name="idfood_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="oder_date" Type="datetime" Nullable="false" />
+    <Property Name="amount" Type="int" Nullable="false" />
+    <Property Name="order_price" Type="float" Nullable="false" />
+    <Property Name="user_iduser" Type="int" Nullable="false" />
+    <Property Name="food_menu_idfood" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="image">
+    <Key>
+      <PropertyRef Name="idimage" />
+      <PropertyRef Name="resource_type_idresource_type" />
+    </Key>
+    <Property Name="idimage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="45" />
+    <Property Name="resource_type_idresource_type" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="keycard">
+    <Key>
+      <PropertyRef Name="idkeycard" />
+    </Key>
+    <Property Name="idkeycard" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="number" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="access_identifier" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="location">
+    <Key>
+      <PropertyRef Name="idlocation" />
+    </Key>
+    <Property Name="idlocation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="latitude" Type="float" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MSreplication_options">
+    <Key>
+      <PropertyRef Name="optname" />
+      <PropertyRef Name="value" />
+      <PropertyRef Name="major_version" />
+      <PropertyRef Name="minor_version" />
+      <PropertyRef Name="revision" />
+      <PropertyRef Name="install_failures" />
+    </Key>
+    <Property Name="optname" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="value" Type="bit" Nullable="false" />
+    <Property Name="major_version" Type="int" Nullable="false" />
+    <Property Name="minor_version" Type="int" Nullable="false" />
+    <Property Name="revision" Type="int" Nullable="false" />
+    <Property Name="install_failures" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="reservation">
+    <Key>
+      <PropertyRef Name="idreservation" />
+      <PropertyRef Name="user_iduser" />
+    </Key>
+    <Property Name="idreservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="from_date" Type="datetime" Nullable="false" />
+    <Property Name="to_date" Type="datetime" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="type" Type="tinyint" />
+    <Property Name="user_iduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="resource">
+    <Key>
+      <PropertyRef Name="idresource" />
+      <PropertyRef Name="resource_type_idresource_type" />
+      <PropertyRef Name="keycard_idkeycard" />
+      <PropertyRef Name="user_iduser" />
+    </Key>
+    <Property Name="idresource" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="occupied" Type="bit" Nullable="false" />
+    <Property Name="available" Type="bit" Nullable="false" />
+    <Property Name="availability_status" Type="varchar" MaxLength="64" />
+    <Property Name="availability_date" Type="datetime" />
+    <Property Name="resource_type_idresource_type" Type="int" Nullable="false" />
+    <Property Name="keycard_idkeycard" Type="int" Nullable="false" />
+    <Property Name="user_iduser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="resource_type">
+    <Key>
+      <PropertyRef Name="idresource_type" />
+    </Key>
+    <Property Name="idresource_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="qunatity" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_fallback_db">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="version" />
+    </Key>
+    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+    <Property Name="xfallback_dbid" Type="smallint" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="dbid" Type="smallint" Nullable="false" />
+    <Property Name="status" Type="smallint" Nullable="false" />
+    <Property Name="version" Type="smallint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_fallback_dev">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="low" />
+      <PropertyRef Name="high" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="phyname" />
+    </Key>
+    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+    <Property Name="xfallback_low" Type="int" />
+    <Property Name="xfallback_drive" Type="char" MaxLength="2" />
+    <Property Name="low" Type="int" Nullable="false" />
+    <Property Name="high" Type="int" Nullable="false" />
+    <Property Name="status" Type="smallint" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="phyname" Type="varchar" MaxLength="127" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_fallback_usg">
+    <Key>
+      <PropertyRef Name="xserver_name" />
+      <PropertyRef Name="xdttm_ins" />
+      <PropertyRef Name="xdttm_last_ins_upd" />
+      <PropertyRef Name="dbid" />
+      <PropertyRef Name="segmap" />
+      <PropertyRef Name="lstart" />
+      <PropertyRef Name="sizepg" />
+      <PropertyRef Name="vstart" />
+    </Key>
+    <Property Name="xserver_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="xdttm_ins" Type="datetime" Nullable="false" />
+    <Property Name="xdttm_last_ins_upd" Type="datetime" Nullable="false" />
+    <Property Name="xfallback_vstart" Type="int" />
+    <Property Name="dbid" Type="smallint" Nullable="false" />
+    <Property Name="segmap" Type="int" Nullable="false" />
+    <Property Name="lstart" Type="int" Nullable="false" />
+    <Property Name="sizepg" Type="int" Nullable="false" />
+    <Property Name="vstart" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_monitor">
+    <Key>
+      <PropertyRef Name="lastrun" />
+      <PropertyRef Name="cpu_busy" />
+      <PropertyRef Name="io_busy" />
+      <PropertyRef Name="idle" />
+      <PropertyRef Name="pack_received" />
+      <PropertyRef Name="pack_sent" />
+      <PropertyRef Name="connections" />
+      <PropertyRef Name="pack_errors" />
+      <PropertyRef Name="total_read" />
+      <PropertyRef Name="total_write" />
+      <PropertyRef Name="total_errors" />
+    </Key>
+    <Property Name="lastrun" Type="datetime" Nullable="false" />
+    <Property Name="cpu_busy" Type="int" Nullable="false" />
+    <Property Name="io_busy" Type="int" Nullable="false" />
+    <Property Name="idle" Type="int" Nullable="false" />
+    <Property Name="pack_received" Type="int" Nullable="false" />
+    <Property Name="pack_sent" Type="int" Nullable="false" />
+    <Property Name="connections" Type="int" Nullable="false" />
+    <Property Name="pack_errors" Type="int" Nullable="false" />
+    <Property Name="total_read" Type="int" Nullable="false" />
+    <Property Name="total_write" Type="int" Nullable="false" />
+    <Property Name="total_errors" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="iduser" />
+    </Key>
+    <Property Name="iduser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="user_type" Type="tinyint" Nullable="false" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+    <Property Name="activated_date" Type="datetime" />
+    <Property Name="deactivated_date" Type="datetime" />
+    <Property Name="confirmation_key" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="spt_values">
+    <Key>
+      <PropertyRef Name="number" />
+      <PropertyRef Name="type" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="35" />
+    <Property Name="number" Type="int" Nullable="false" />
+    <Property Name="type" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="low" Type="int" />
+    <Property Name="high" Type="int" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <Association Name="fk_food_order_food_menu1">
+    <End Role="food_menu" Type="Self.food_menu" Multiplicity="1" />
+    <End Role="food_order" Type="Self.food_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="food_menu">
+        <PropertyRef Name="idfood" />
+      </Principal>
+      <Dependent Role="food_order">
+        <PropertyRef Name="food_menu_idfood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_food_order_user1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="food_order" Type="Self.food_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="food_order">
+        <PropertyRef Name="user_iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_image_resource_type1">
+    <End Role="resource_type" Type="Self.resource_type" Multiplicity="1" />
+    <End Role="image" Type="Self.image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_type">
+        <PropertyRef Name="idresource_type" />
+      </Principal>
+      <Dependent Role="image">
+        <PropertyRef Name="resource_type_idresource_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_reservation_user1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="user_iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_keycard1">
+    <End Role="keycard" Type="Self.keycard" Multiplicity="1" />
+    <End Role="resource" Type="Self.resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="keycard">
+        <PropertyRef Name="idkeycard" />
+      </Principal>
+      <Dependent Role="resource">
+        <PropertyRef Name="keycard_idkeycard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_resource_type">
+    <End Role="resource_type" Type="Self.resource_type" Multiplicity="1" />
+    <End Role="resource" Type="Self.resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_type">
+        <PropertyRef Name="idresource_type" />
+      </Principal>
+      <Dependent Role="resource">
+        <PropertyRef Name="resource_type_idresource_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_resource_user1">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="resource" Type="Self.resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="resource">
+        <PropertyRef Name="user_iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_MScleanupmergepublisher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_MSrepl_startup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="masterModelStoreContainer">
+    <EntitySet Name="food_menu" EntityType="Self.food_menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="food_order" EntityType="Self.food_order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="keycard" EntityType="Self.keycard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="location" EntityType="Self.location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="reservation" EntityType="Self.reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resource" EntityType="Self.resource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resource_type" EntityType="Self.resource_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[MSreplication_options].[optname] AS [optname], 
+[MSreplication_options].[value] AS [value], 
+[MSreplication_options].[major_version] AS [major_version], 
+[MSreplication_options].[minor_version] AS [minor_version], 
+[MSreplication_options].[revision] AS [revision], 
+[MSreplication_options].[install_failures] AS [install_failures]
+FROM [dbo].[MSreplication_options] AS [MSreplication_options]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[spt_fallback_db].[xserver_name] AS [xserver_name], 
+[spt_fallback_db].[xdttm_ins] AS [xdttm_ins], 
+[spt_fallback_db].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+[spt_fallback_db].[xfallback_dbid] AS [xfallback_dbid], 
+[spt_fallback_db].[name] AS [name], 
+[spt_fallback_db].[dbid] AS [dbid], 
+[spt_fallback_db].[status] AS [status], 
+[spt_fallback_db].[version] AS [version]
+FROM [dbo].[spt_fallback_db] AS [spt_fallback_db]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[spt_fallback_dev].[xserver_name] AS [xserver_name], 
+[spt_fallback_dev].[xdttm_ins] AS [xdttm_ins], 
+[spt_fallback_dev].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+[spt_fallback_dev].[xfallback_low] AS [xfallback_low], 
+[spt_fallback_dev].[xfallback_drive] AS [xfallback_drive], 
+[spt_fallback_dev].[low] AS [low], 
+[spt_fallback_dev].[high] AS [high], 
+[spt_fallback_dev].[status] AS [status], 
+[spt_fallback_dev].[name] AS [name], 
+[spt_fallback_dev].[phyname] AS [phyname]
+FROM [dbo].[spt_fallback_dev] AS [spt_fallback_dev]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[spt_fallback_usg].[xserver_name] AS [xserver_name], 
+[spt_fallback_usg].[xdttm_ins] AS [xdttm_ins], 
+[spt_fallback_usg].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
+[spt_fallback_usg].[xfallback_vstart] AS [xfallback_vstart], 
+[spt_fallback_usg].[dbid] AS [dbid], 
+[spt_fallback_usg].[segmap] AS [segmap], 
+[spt_fallback_usg].[lstart] AS [lstart], 
+[spt_fallback_usg].[sizepg] AS [sizepg], 
+[spt_fallback_usg].[vstart] AS [vstart]
+FROM [dbo].[spt_fallback_usg] AS [spt_fallback_usg]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[spt_monitor].[lastrun] AS [lastrun], 
+[spt_monitor].[cpu_busy] AS [cpu_busy], 
+[spt_monitor].[io_busy] AS [io_busy], 
+[spt_monitor].[idle] AS [idle], 
+[spt_monitor].[pack_received] AS [pack_received], 
+[spt_monitor].[pack_sent] AS [pack_sent], 
+[spt_monitor].[connections] AS [connections], 
+[spt_monitor].[pack_errors] AS [pack_errors], 
+[spt_monitor].[total_read] AS [total_read], 
+[spt_monitor].[total_write] AS [total_write], 
+[spt_monitor].[total_errors] AS [total_errors]
+FROM [dbo].[spt_monitor] AS [spt_monitor]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="spt_values" EntityType="Self.spt_values" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[spt_values].[name] AS [name], 
+[spt_values].[number] AS [number], 
+[spt_values].[type] AS [type], 
+[spt_values].[low] AS [low], 
+[spt_values].[high] AS [high], 
+[spt_values].[status] AS [status]
+FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="fk_food_order_food_menu1" Association="Self.fk_food_order_food_menu1">
+      <End Role="food_menu" EntitySet="food_menu" />
+      <End Role="food_order" EntitySet="food_order" />
+    </AssociationSet>
+    <AssociationSet Name="fk_food_order_user1" Association="Self.fk_food_order_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="food_order" EntitySet="food_order" />
+    </AssociationSet>
+    <AssociationSet Name="fk_image_resource_type1" Association="Self.fk_image_resource_type1">
+      <End Role="resource_type" EntitySet="resource_type" />
+      <End Role="image" EntitySet="image" />
+    </AssociationSet>
+    <AssociationSet Name="fk_reservation_user1" Association="Self.fk_reservation_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_keycard1" Association="Self.fk_resource_keycard1">
+      <End Role="keycard" EntitySet="keycard" />
+      <End Role="resource" EntitySet="resource" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_resource_type" Association="Self.fk_resource_resource_type">
+      <End Role="resource_type" EntitySet="resource_type" />
+      <End Role="resource" EntitySet="resource" />
+    </AssociationSet>
+    <AssociationSet Name="fk_resource_user1" Association="Self.fk_resource_user1">
+      <End Role="user" EntitySet="user" />
+      <End Role="resource" EntitySet="resource" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
