@@ -12,6 +12,7 @@ namespace HotelNWT
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //jope komentar
 
             routes.MapRoute(
                 name: "Default",
