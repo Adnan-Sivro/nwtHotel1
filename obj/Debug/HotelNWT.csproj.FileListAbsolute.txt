@@ -24,3 +24,29 @@ c:\users\korisnik\documents\visual studio 2012\Projects\HotelNWT\HotelNWT\obj\De
 c:\users\korisnik\documents\visual studio 2012\Projects\HotelNWT\HotelNWT\obj\Debug\HotelNWT.dll
 c:\users\korisnik\documents\visual studio 2012\Projects\HotelNWT\HotelNWT\obj\Debug\HotelNWT.pdb
 C:\Users\Korisnik\Documents\Visual Studio 2012\Projects\HotelNWT\HotelNWT\bin\HotelNWT.dll.config
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\HotelNWT.dll.config
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\HotelNWT.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\HotelNWT.pdb
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\Antlr3.Runtime.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\EntityFramework.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\Newtonsoft.Json.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.Mvc.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.Optimization.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.Providers.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.Razor.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPages.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPages.Razor.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\WebGrease.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\EntityFramework.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\Newtonsoft.Json.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.Mvc.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.Razor.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPages.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPages.Razor.xml
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\obj\Debug\HotelNWT.csprojResolveAssemblyReference.cache
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\obj\Debug\HotelNWT.dll
+C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\obj\Debug\HotelNWT.pdb

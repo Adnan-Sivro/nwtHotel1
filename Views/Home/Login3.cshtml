@@ -2,64 +2,122 @@
     ViewBag.Title = "Login3";
 }
 
-<style>
-                 input{
-                    padding:5px;
-                    border:1px solid #A5A5A5;
-                }
-                input.ng-dirty.ng-invalid {
-                    border:1px solid red;
-                    background-color:rgb(255, 244, 244);
-                }
-                .error {
-                    color:red;
-                }
-            </style>
- 
+
+ <head>
+    <meta charset="utf-8" />
+    <title>Login Form</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+     <link href="~/Content/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/assets/css/style-metro.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/assets/css/style.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/assets/css/style-responsive.css" rel="stylesheet" type="text/css" />
+     <link href="~/Content/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color" />
+     <link href="~/Content/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css" />
+     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/select2/select2_metro.css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+     <link href="~/Content/assets/css/pages/login-soft.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
             <h2>Hotel NWTLogin Page</h2>
  
-            <div ng-controller="Login3Controller">
-                <form novalidate name="f1" ng-submit="Login()">
-                    <div style="color:rgb(142,2,2)">{{Message}}</div>
-                    <table ng-show="!IsLogedIn"> <!-- Here  ng-show="!IsLogedIn" means I want to hide table after loged in-->
-                        <tr>
-                            <td>Username : </td>
-                            <td>
- 
-                                <!-- Here ng-class="Submitted?'ng-dirty':''" Means if submitted (clicked submit button) then make this dirty state 
-                                    for show red border-->
-                                <input type="text" ng-model="LoginData.Username" name="cUsername" ng-class="Submitted?'ng-dirty':''" required autofocus />
-                                <span class="error" ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required">Username required</span>
- 
-                                <!-- ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required" Means I want to show this span only when 
-                                    the control cUsername is invalid-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Password : </td>
-                            <td>
-                                <input type="password" ng-model="LoginData.Password"  name="cPassword" ng-class="Submitted?'ng-dirty':''" required autofocus />
-                                <span class="error" ng-show="(f1.cPassword.$dirty || Submitted) && f1.cPassword.$error.required">Password required</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <input type="submit" value="Login" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                        Not register ? <a href="/home/registration" >click here </a>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+<body class="login">
+    
+    <div class="logo">
+        <!-- PUT YOUR LOGO HERE -->
+    </div>
+
+
+    <div ng-controller="Login3Controller">
+        <div class="content">
+        <form class="form-vertical login-form" novalidate name="f1" ng-submit="Login()">
+            <div style="color:rgb(142,2,2)">{{Message}}</div>
+            
+                <h3 class="form-title">Login to your account</h3>
+                <div class="alert alert-error hide" ng-show="!IsLogedIn">
+                    <button class="close" data-dismiss="alert"></button>
+                    <span>Enter any username and password.</span>
+                </div>
+                <div class="control-group">
+                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-user"></i>
+
+                            <input class="m-warp placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" ng-model="LoginData.Username" name="cUsername" ng-class="Submitted?'ng-dirty':''" required autofocus />
+                            <span class="error" ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required">Username required</span>
+
+                        <!-- ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required" Means I want to show this span only when
+        the control cUsername is invalid-->
+                        </div>
+                        </div>
+                    </div>
+                
+            <div class="control-group">
+                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <div class="controls">
+                    <div class="input-icon left">
+                        <i class="icon-lock"></i>
+                        <input class="m-warp placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" ng-model="LoginData.Password" name="cPassword" ng-class="Submitted?'ng-dirty':''" required autofocus />
+                        <span class="error" ng-show="(f1.cPassword.$dirty || Submitted) && f1.cPassword.$error.required">Password required</span>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="form-actions">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember" value="1" /> Remember me
+                </label>
+                 <button type="submit" class="btn blue pull-right"  value="Login">
+                 Login <i class="m-icon-swapright m-icon-white"></i> 
+                 </button>
             </div>
- 
- 
- 
+            <div class="create-account">
+                <p>
+                    Don't have an account yet ?&nbsp;
+                    <a href="/home/registration" id="register-btn">Create an account</a>
+                </p>
+            </div>
+        </form>
+            </div>
+        </div>
+
+    
+    <script src="~/Content/assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="~/Content/assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <script src="assets/plugins/excanvas.min.js"></script>
+    <script src="assets/plugins/respond.min.js"></script>
+    <![endif]-->
+    <script src="~/Content/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+   
+    <script src="~/Content/assets/plugins/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Content/assets/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Content/assets/plugins/select2/select2.min.js"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="~/Content/assets/scripts/app.js" type="text/javascript"></script>
+    <script src="~/Content/assets/scripts/login-soft.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+
+             </body>
+
             @section scripts{
                 <script src="~/Scripts/AngularControllers/Login3Controller.js"></script>
             }

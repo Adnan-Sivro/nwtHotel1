@@ -69,6 +69,7 @@ namespace HotelNWT.Controllers
                         //Save here
                         u.confirmation_key = "1";
                         u.created_date = DateTime.Now;
+                        u.activated_date = DateTime.Now;
                     try
                     {
                         dc.user.Add(u);
