@@ -1051,6 +1051,41 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\index\css\style.css" />
+    <Content Include="Content\index\images\banner1.jpg" />
+    <Content Include="Content\index\images\banner2.jpg" />
+    <Content Include="Content\index\images\banner3.jpg" />
+    <Content Include="Content\index\images\bg.jpg" />
+    <Content Include="Content\index\images\but.png" />
+    <Content Include="Content\index\images\icon.png" />
+    <Content Include="Content\index\images\logo3.png" />
+    <Content Include="Content\index\images\pic.jpg" />
+    <Content Include="Content\index\images\pic10.jpg" />
+    <Content Include="Content\index\images\pic11.jpg" />
+    <Content Include="Content\index\images\pic12.jpg" />
+    <Content Include="Content\index\images\pic13.jpg" />
+    <Content Include="Content\index\images\pic14.jpg" />
+    <Content Include="Content\index\images\pic15.jpg" />
+    <Content Include="Content\index\images\pic16.jpg" />
+    <Content Include="Content\index\images\pic17.jpg" />
+    <Content Include="Content\index\images\pic18.jpg" />
+    <Content Include="Content\index\images\pic19.jpg" />
+    <Content Include="Content\index\images\pic21.jpg" />
+    <Content Include="Content\index\images\pic22.jpg" />
+    <Content Include="Content\index\images\pic23.jpg" />
+    <Content Include="Content\index\images\pic24.jpg" />
+    <Content Include="Content\index\images\pic25.jpg" />
+    <Content Include="Content\index\images\pic26.jpg" />
+    <Content Include="Content\index\images\pic27.jpg" />
+    <Content Include="Content\index\images\pic4.jpg" />
+    <Content Include="Content\index\images\pic5.jpg" />
+    <Content Include="Content\index\images\pic6.jpg" />
+    <Content Include="Content\index\images\pic7.jpg" />
+    <Content Include="Content\index\images\pic8.jpg" />
+    <Content Include="Content\index\images\pic9.jpg" />
+    <Content Include="Content\index\js\basic-jquery-slider.js" />
+    <Content Include="Content\index\js\basic-jquery-slider.min.js" />
+    <Content Include="Content\index\js\libs\jquery-1.6.2.min.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -1210,6 +1245,7 @@
     <Content Include="Content\assets\plugins\select2\release.sh" />
     <Content Include="Content\assets\plugins\select2\select2.jquery.json" />
     <Content Include="Content\assets\plugins\select2\select2_locale_en.js.template" />
+    <Content Include="Content\index\images\logo3.psd" />
     <None Include="Properties\PublishProfiles\hotelnwt.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\angular-route.js" />
@@ -1218,6 +1254,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\AngularControllers\Login3Controller.js" />
     <Content Include="Scripts\AngularControllers\RegistrationController.js" />
+    <Content Include="Scripts\AngularControllers\ReservationController.js" />
     <Content Include="Scripts\AngularControllers\Translate.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1251,6 +1288,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login3.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\Reservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

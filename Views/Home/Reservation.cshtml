@@ -3,7 +3,6 @@
 }
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,21 +73,22 @@
                                 <div class="clear"></div>
                             </div>
                         </div>
-                        <div ng-controller="Login3Controller">
+                        <div ng-controller="ReservationController">
                             <div class="grid2">
                                 <h4>Book a Room</h4>
                                 <div class="booking">
-                                    <form action="#" id="reservation-form">
+                                    <form action="#" id="reservation-form" novalidate name="f1" ng-submit="SaveData(Reservation)">
+                                        <div style="color:red">{{message}}</div>
                                         <fieldset>
                                             <div class="field">
                                                 <h5>Reservation Information:</h5>
                                                 <label>Check In</label>
-                                                <input type="date" name="checkin">
+                                                <input type="date" name="checkin" ng-model="Reservation.From_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
 
                                             </div>
                                             <div class="field">
                                                 <label>Check Out</label>
-                                                <input type="date" name="checkout">
+                                                <input type="date" name="checkout" ng-model="Reservation.To_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
                                             </div>
                                             <div class="field">
                                                 Persons:
@@ -96,7 +96,18 @@
                                                 &nbsp; &nbsp;  Rooms:&nbsp;
                                                 <input type="text" value="1">
                                             </div>
-                                            <div class="button"><a href="#">Advanced Search</a></div>
+                                            <div class="field">
+                                                <label>Type of Room</label>
+                                                <select class="select1" ng-model="Reservation.Type">
+                                                    <option value="0">Tip1</option>
+                                                    <option value="1">Tip2</option>
+                                                    <option value="2">Tip3</option>
+                                                    <option value="3">Tip4</option>
+                                                </select>
+                                            </div>
+                                            <div class="button">
+                                                <input class="button" type="submit" value="{{submitText}}" class="button" />
+                                            </div>
                                         </fieldset>
                                     </form>
                                     <div class="clear"></div>
@@ -180,9 +191,13 @@
     <div class="footer-bottom">
         <div class="wrap">
             <div class="copy">
-                <p>&copy; 2012 All rights Reserved | Design by <a href="http://w3layouts.com">W3Layouts</a></p>
+                <p>&copy; 2012 All rights Reserved | Design by ENES MUJIC and ADNAN SIVRO</p>
             </div>
         </div>
     </div>
 </body>
 </html>
+
+@section Scripts{
+    <script src="~/Scripts/AngularControllers/ReservationController.js"></script>
+}

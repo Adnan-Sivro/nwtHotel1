@@ -100,7 +100,49 @@ namespace HotelNWT.Controllers
                     return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
         
+        [HttpPost]
+        public JsonResult Reservation(reservation r)
+        {
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                using (masterEntities dc = new masterEntities())
+                {
+                    var reservation = dc.reservation.Where(a => a.from_date.Equals(r.from_date) && a.type.Equals(r.type)).FirstOrDefault();
+                    if (reservation == null)
+                    {
+                        try
+                        {
+                            dc.reservation.Add(r);
+                            dc.SaveChanges();
+                            message = "Successful reservation!";
+                        }
+                        catch (DbEntityValidationException dbEx)
+                        {
+                            foreach (var validationErrors in dbEx.EntityValidationErrors)
+                            {
+                                foreach (var validationError in validationErrors.ValidationErrors)
+                                {
+                                    System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                                }
+                            }
+                        }
 
+                    }
+                    else
+                    {
+                        message = "Room is reservated!";
+                    }
+ 
+                }
+            }
+            else{
+                message = "Reservation failed!";
+            }
+                return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+
+        
 
     }
 }
