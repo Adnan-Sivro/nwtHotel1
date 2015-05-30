@@ -40,7 +40,7 @@
                         </ul>
                     </div>
                 </div>
-                <script>
+             <!--   <script>
                     $(document).ready(function () {
 
                         $('#banner').bjqs({
@@ -50,7 +50,7 @@
                         });
 
                     });
-                </script>
+                </script>-->
                 <div class="content">
                     <div class="content-top">
                         <div class="grid">
@@ -84,11 +84,14 @@
                                                 <h5>Reservation Information:</h5>
                                                 <label>Check In</label>
                                                 <input type="date" name="checkin" ng-model="Reservation.From_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
+                                                <span class="error" ng-show="(f1.From_Date.$dirty || Submitted) && f1.From_Date.$error.required">Date required</span>
+
 
                                             </div>
                                             <div class="field">
                                                 <label>Check Out</label>
                                                 <input type="date" name="checkout" ng-model="Reservation.To_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
+                                                <span class="error" ng-show="(f1.To_Date.$dirty || Submitted) && f1.To_Date.$error.required">Date required</span>
                                             </div>
                                             <div class="field">
                                                 Persons:
@@ -104,9 +107,10 @@
                                                     <option value="2">Tip3</option>
                                                     <option value="3">Tip4</option>
                                                 </select>
+                                                <span class="error" ng-show="(f1.Type.$dirty || Submitted) && f1.Type.$error.required">Date required</span>
                                             </div>
                                             <div class="button">
-                                                <input class="button" type="submit" value="{{submitText}}" class="button" />
+                                                <input class="button" type="submit" value="{{submitText}}"  />
                                             </div>
                                         </fieldset>
                                     </form>

@@ -26,6 +26,7 @@ namespace HotelNWT.Controllers
                 //komentar
                 
                 var user = dc.user.Where(a => a.username.Equals(d.Username) && a.password.Equals(d.Password)).FirstOrDefault();
+                
                 return new JsonResult { Data = user, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
                 //var authticket = new
@@ -108,9 +109,10 @@ namespace HotelNWT.Controllers
             {
                 using (masterEntities dc = new masterEntities())
                 {
-                    var reservation = dc.reservation.Where(a => a.from_date.Equals(r.from_date) && a.type.Equals(r.type)).FirstOrDefault();
-                    if (reservation == null)
-                    {
+                    r.user_iduser = 2;
+                 //   var reservation = dc.reservation.Where(a => a.from_date.Equals(r.from_date) && a.type.Equals(r.type)).FirstOrDefault();
+                  //  if (reservation == null)
+                   // {
                         try
                         {
                             dc.reservation.Add(r);
@@ -128,11 +130,11 @@ namespace HotelNWT.Controllers
                             }
                         }
 
-                    }
-                    else
-                    {
-                        message = "Room is reservated!";
-                    }
+                    //}
+                    //else
+                    //{
+                      //  message = "Room is reservated!";
+                    //}
  
                 }
             }
