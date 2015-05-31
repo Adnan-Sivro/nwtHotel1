@@ -23,6 +23,17 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 
+
+#map {
+    height:420px;
+    width:600px;
+}
+.infoWindowContent {
+    font-size: 14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
 body{
 	font-family: 'Monda', sans-serif;
 }

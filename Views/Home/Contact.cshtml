@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Reservation";
+    ViewBag.Title = "Contact";
 }
 
 
@@ -12,6 +12,7 @@
     <link href="~/Content/index/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src="~/Content/index/js/libs/jquery-1.6.2.min.js"></script>
     <script src="~/Content/index/js/basic-jquery-slider.js"></script>
+    <script src="~/Scripts/map-google.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -23,24 +24,23 @@
                 </div>
                 <div class="menu">
                     <ul>
-                        <li class="active"><a href="/home/reservation">Home</a></li>
+                        <li><a href="/home/reservation">Home</a></li>
                         <li><a href="tariff.html">Tariff</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="food&beverage.html">Food & Beverage</a></li>
-                        <li><a href="/home/contact">Contact</a></li>
+                        <li class="active"><a href="/home/contact">Contact</a></li>
                     </ul>
                     <div class="clear"></div>
                 </div>
                 <div id="container">
-                    <div id="banner">
-                        <ul class="bjqs">
-                            <li><img src="~/Content/index/images/banner3.jpg" title="Automatically generated caption"></li>
-                            <li><img src="~/Content/index/images/banner2.jpg" title="Automatically generated caption"></li>
-                            <li><img src="~/Content/index/images/banner1.jpg" title="Automatically generated caption"></li>
-                        </ul>
-                    </div>
+                    <div style="margin-left: 23px;" ng-app="HotelNWT" ng-controller="Map">
+                        <div id="map"></div>
+                        <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+                            <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+                        </div>
+                    </div>               
                 </div>
-             
+               
                 <div class="content">
                     <div class="content-top">
                         <div class="grid">
@@ -63,47 +63,7 @@
                                 <div class="clear"></div>
                             </div>
                         </div>
-                        <div ng-controller="ReservationController">
-                            <div class="grid2">
-                                <h4>Book a Room</h4>
-                                <div class="booking">
-                                    <form action="#" id="reservation-form" novalidate name="f1" ng-submit="SaveData(Reservation)">
-                                        <div style="color:red">{{message}}</div>
-                                        <fieldset>
-                                            <div class="field">
-                                                <h5>Reservation Information:</h5>
-                                                <label>Check In</label>
-                                                <input type="date" name="checkin" ng-model="Reservation.From_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
-
-                                            </div>
-                                            <div class="field">
-                                                <label>Check Out</label>
-                                                <input type="date" name="checkout" ng-model="Reservation.To_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
-                                            </div>
-                                            <div class="field">
-                                                Persons:
-                                                <input type="text" value="1">
-                                                &nbsp; &nbsp;  Rooms:&nbsp;
-                                                <input type="text" value="1">
-                                            </div>
-                                            <div class="field">
-                                                <label>Type of Room</label>
-                                                <select class="select1" ng-model="Reservation.Type">
-                                                    <option value="0">Tip1</option>
-                                                    <option value="1">Tip2</option>
-                                                    <option value="2">Tip3</option>
-                                                    <option value="3">Tip4</option>
-                                                </select>
-                                            </div>
-                                            <div class="button">
-                                                <input class="button" type="submit" value="{{submitText}}" class="button" />
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                        </div>
+                      
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -190,4 +150,5 @@
 
 @section Scripts{
     <script src="~/Scripts/AngularControllers/ReservationController.js"></script>
+<script src="~/Scripts/AngularControllers/MapController.js"></script>
 }

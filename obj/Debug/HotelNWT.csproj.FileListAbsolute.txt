@@ -50,3 +50,22 @@ C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\bin\System.Web.WebPag
 C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\obj\Debug\HotelNWT.csprojResolveAssemblyReference.cache
 C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\obj\Debug\HotelNWT.dll
 C:\Users\Korisnik\Desktop\New Folder\enveteHotel\nwtHotel1\obj\Debug\HotelNWT.pdb
+C:\Users\Enes\Documents\nwtHotel1\bin\HotelNWT.dll.config
+C:\Users\Enes\Documents\nwtHotel1\bin\HotelNWT.dll
+C:\Users\Enes\Documents\nwtHotel1\bin\HotelNWT.pdb
+C:\Users\Enes\Documents\nwtHotel1\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.Razor.dll
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.WebPages.dll
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.WebPages.Razor.dll
+C:\Users\Enes\Documents\nwtHotel1\bin\EntityFramework.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\Microsoft.Web.Infrastructure.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\Newtonsoft.Json.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.Mvc.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.Razor.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.WebPages.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Enes\Documents\nwtHotel1\bin\System.Web.WebPages.Razor.xml
+C:\Users\Enes\Documents\nwtHotel1\obj\Debug\HotelNWT.csprojResolveAssemblyReference.cache
+C:\Users\Enes\Documents\nwtHotel1\obj\Debug\HotelNWT.dll
+C:\Users\Enes\Documents\nwtHotel1\obj\Debug\HotelNWT.pdb

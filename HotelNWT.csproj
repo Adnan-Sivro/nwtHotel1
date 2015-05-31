@@ -1253,6 +1253,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\AngularControllers\Login3Controller.js" />
+    <Content Include="Scripts\AngularControllers\MapController.js" />
     <Content Include="Scripts\AngularControllers\RegistrationController.js" />
     <Content Include="Scripts\AngularControllers\ReservationController.js" />
     <Content Include="Scripts\AngularControllers\Translate.js" />
@@ -1272,6 +1273,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\map-google.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -1289,6 +1291,7 @@
     <Content Include="Views\Home\Login3.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\Reservation.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
