@@ -3,7 +3,7 @@
             $scope.submitText = "Save";
             $scope.submitted = false;
             $scope.message = '';
-            $scope.isFormValid = false;
+            $scope.isFormValid = true;
             $scope.Reservation = {
                 From_Date: '',
                 To_Date: '',
@@ -20,7 +20,7 @@
                     if ($scope.isFormValid) {
                         $scope.submitText = 'Please Wait...';
                         $scope.Reservation = data;
-                        RegistrationService.SaveFormData($scope.Reservation).then(function (d) {
+                        ReservationService.SaveFormData($scope.Reservation).then(function (d) {
                             alert(d);
                             if (d == 'Success') {
                                 //have to clear form here
@@ -60,5 +60,6 @@
                 return defer.promise;
             }
             return fac;
+
         });
         

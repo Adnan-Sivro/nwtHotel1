@@ -34,6 +34,7 @@ using System;
                     }
                     public ActionResult Contact()
                     {
+
                         return View("Contact");
                     }
                 }

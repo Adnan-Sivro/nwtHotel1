@@ -33,8 +33,6 @@ angular.module('HotelNWT', [])
         });
         marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
 
-
-
     }
 
     for (i = 0; i < cities.length; i++) {
