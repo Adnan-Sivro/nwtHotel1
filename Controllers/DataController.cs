@@ -23,7 +23,7 @@ namespace HotelNWT.Controllers
         {
             using (masterEntities dc = new masterEntities())
             {
-                //komentar
+         
                 
                 var user = dc.user.Where(a => a.username.Equals(d.Username) && a.password.Equals(d.Password)).FirstOrDefault();
                 
