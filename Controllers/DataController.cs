@@ -20,6 +20,10 @@ namespace HotelNWT.Controllers
         {
             if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
+                if (System.Web.HttpContext.Current.User.Identity.Name == "admin")
+                {
+                    return RedirectToAction("ReservationAdmin", "Home");
+                }
                 return RedirectToAction("Reservation", "Home");
             }
 
@@ -160,6 +164,15 @@ namespace HotelNWT.Controllers
                             {
                                 r.user_iduser = user.iduser;
                             }
+                            DateTime danas = DateTime.Now;
+                            if (r.from_date <= danas && r.to_date >= danas)
+                            {
+                                r.status = 1;
+                            }
+                            else
+                            {
+                                r.status = 0;
+                            }
 
                             dc.reservation.Add(r);
                             dc.SaveChanges();
@@ -244,6 +257,36 @@ namespace HotelNWT.Controllers
             }
             return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+        [HttpGet]
+        public JsonResult ReservatedRooms()
+        {
+            List<ReservationData> CO = new List<ReservationData>();
+            DateTime danas = DateTime.Now;
+            using (masterEntities dc = new masterEntities())
+            {
+                
+                    var reservations = dc.reservation.Where(a => a.status.Equals(1)).OrderBy(a => a.type).ToList();
+                        
+                foreach (var i in reservations)
+                    {
+
+
+                        CO.Add(new ReservationData
+                        {
+                            from_date=i.from_date,
+                            to_date = i.to_date,
+                            type=i.type
+                        }
+                            );
+                    }
+               
+                
+            }
+            JsonResult res = new JsonResult { Data = CO, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return res;
+        }
+
 
 
     }

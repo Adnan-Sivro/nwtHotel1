@@ -1,0 +1,251 @@
+﻿@{
+
+    ViewBag.Title = "ReservationAdmin";
+}
+
+<script src="~/Content/index/js/basic-jquery-slider.js"></script>
+
+<h1>Admin Page</h1>
+<div class="header">
+    <div class="wrap">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="/home/reservation"><img src="~/Content/index/images/logo3.png" /></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="active"><a href="/home/reservationadmin">Home</a></li>
+                    <li><a href="tariff.html">Tariff</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="/home/foodorder">Food Order</a></li>
+                    <li><a href="/home/contact">Contact</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <style>
+                /*Here I will add some css for looks good*/
+                .tabContainer {
+                    max-height: 400px;
+                    overflow: auto;
+                    width: 80%;
+                }
+
+                .tableData {
+                    border-left: solid 1px #D8C3C3;
+                    border-top: solid 1px #D8C3C3;
+                    width: 100%;
+                }
+
+                    .tableData tr {
+                    }
+
+                    .tableData td, .tableData th {
+                        border-right: solid 1px #D8C3C3;
+                        border-bottom: solid 1px #D8C3C3;
+                        text-align: left;
+                        padding: 5px;
+                    }
+
+                    .tableData td {
+                    }
+
+                    .tableData th {
+                        background-color: #FAFAFA;
+                        padding: 7px 5px;
+                        border-bottom-color: #9C9C9C;
+                    }
+
+                .odd {
+                    background-color: #f3f3f3;
+                }
+
+                .even {
+                    background-color: #ffffff;
+                }
+
+                tr.sub {
+                    display: none;
+                }
+
+                .CX {
+                    width: 35px;
+                }
+
+                    .CX span {
+                        font-family: fantasy;
+                        font-size: 15px;
+                        display: block;
+                        width: 100%;
+                        cursor: pointer;
+                        text-align: center;
+                    }
+            </style>
+            <h1 style="color: white;font-size: 26px;">Reservations: </h1>
+            <div ng-controller="ReservatedRoomsController">
+                <table class="tableData" border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Type</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="R in ReservatedRooms">
+                        <tr ng-class-even="'even'" ng-class-odd="'odd'">
+                            <td class="CX"><span>+</span></td>
+                            <td>{{R.type}}</td>
+                            <td>{{R.from_date}}</td>
+                            <td>{{R.to_date}}</td>
+                            
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <script>
+                $(function () {
+                    $('banner').on('click', '.CX span', function () {
+                        //When Click On + sign
+                        if ($(this).text() == '+') {
+                            $(this).text('-');
+                        }
+                        else {
+                            $(this).text('+');
+                        }
+                        $(this).closest('tr') // row of + sign
+                        .next('tr') // next row of + sign
+                        .toggle(); // if show then hide else show
+
+                    });
+                });
+            </script>
+            
+
+            <div class="content">
+                <div class="content-top">
+                    <div class="grid">
+                        <div class="tariff">
+                            
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="grid1">
+                        <div class="tariff">
+                            <div class="text">
+                                <h2>Breakfast</h2>
+                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>
+                                <a href="tariff.html"><p><span class="yellow">Read More</span></p></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-bottom">
+    <div class="wrap">
+        <div class="bottom-gallery">
+            <div class="bottom-image">
+                <img src="~/Content/index/images/pic.jpg">
+            </div>
+            <div class="bottom-image">
+                <img src="~/Content/index/images/pic4.jpg">
+            </div>
+            <div class="bottom-image">
+                <img src="~/Content/index/images/pic10.jpg">
+            </div>
+            <div class="bottom-image1">
+                <img src="~/Content/index/images/pic7.jpg">
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrap">
+        <div class="footer-top">
+            <div class="sub-footer">
+                <div class="footer-menu">
+                    <h3>Footer Links </h3>
+                    <div class="footer-pic">
+                        <div class="footer-img">
+                            <a href=""><img src="~/Content/index/images/pic22.jpg"></a>
+                        </div>
+                        <div class="footer-img">
+                            <a href=""><img src="~/Content/index/images/pic23.jpg"></a>
+                        </div>
+                        <div class="footer-img">
+                            <a href=""><img src="~/Content/index/images/pic25.jpg"></a>
+                        </div>
+                        <div class="footer-img">
+                            <a href=""><img src="~/Content/index/images/pic24.jpg"></a>
+                        </div>
+                        <div class="footer-img">
+                            <a href=""><img src="~/Content/index/images/pic26.jpg"></a>
+                        </div>
+                        <div class="footer-img">
+                            <a href=""><img src="~/Content/index/images/pic27.jpg"></a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-footer1">
+                <h2>Recent Blogs</h2>
+                <p> It has survived not only five centuries, but also the leap into electronic. </p>
+                <p> It has survived not only five centuries, but also the leap into electronic. </p>
+                <p> It has survived not only five centuries, but also the leap into electronic. </p>
+            </div>
+            <div class="sub-footer1">
+                <h2>Visit Us</h2>
+                <ul>
+                    <li><a href="#">simply dummy text of the printing</a></li>
+                    <li><a href="#">simply dummy text of the printing</a></li>
+                    <li><a href="#">simply dummy text of the printing</a></li>
+                    <li><a href="#">simply dummy text of the printing</a></li>
+                    <li><a href="#">simply dummy text of the printing</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="footer-bottom">
+    <div class="wrap">
+        <div class="copy">
+            <p>&copy; 2012 All rights Reserved | Design by ENES MUJIC and ADNAN SIVRO</p>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+      
+    
+    <script src="~/Scripts/AngularControllers/ReservatedRoomsController.js"></script>
+    <script>
+        $(function () {
+            $('body').on('click', '.CX span', function () {
+                //When Click On + sign
+                if ($(this).text() == '+') {
+                    $(this).text('-');
+                }
+                else {
+                    $(this).text('+');
+                }
+                $(this).closest('tr') // row of + sign
+                .next('tr') // next row of + sign
+                .toggle(); // if show then hide else show
+
+            });
+        });
+    </script>
+}
+
+

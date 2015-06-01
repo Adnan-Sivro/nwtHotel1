@@ -43,6 +43,11 @@ using System;
                         return View();
                     }
 
+                    public ActionResult ReservationAdmin()
+                    {
+                        return View();
+                    }
+
                 }
 
             }
