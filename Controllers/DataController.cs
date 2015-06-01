@@ -7,6 +7,8 @@ using HotelNWT.Models;
 using System.Web.Security;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Web.Script.Serialization;
+using System.Configuration;
 namespace HotelNWT.Controllers
 {
     public class DataController : Controller
@@ -16,35 +18,65 @@ namespace HotelNWT.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Reservation", "Home");
+            }
+
+            return RedirectToAction("Login3", "Home");
+
+        }
+        public virtual ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            foreach (var cookie in Request.Cookies.AllKeys)
+            {
+                Request.Cookies.Remove(cookie);
+            }
+            foreach (var cookie in Response.Cookies.AllKeys)
+            {
+                Response.Cookies.Remove(cookie);
+            }
+            return RedirectToAction("Login3", "Home");
         }
 
+        [HttpPost]
         public JsonResult UserLogin(LoginData d)
         {
             using (masterEntities dc = new masterEntities())
-            {
-         
-                
+            {   
                 var user = dc.user.Where(a => a.username.Equals(d.Username) && a.password.Equals(d.Password)).FirstOrDefault();
+
+                var model = new LoginData();
+
+                if (user != null)
+                {
+                    model.Username = user.username;
+                    model.Password = user.password;
+                    model.RememberMe = d.RememberMe;
+
+                    var authticket = new
+                        FormsAuthenticationTicket(1,
+                            user.username,
+                            DateTime.Now,
+                            DateTime.Now.AddYears(1),
+                            model.RememberMe,
+                            "",
+                            FormsAuthentication.FormsCookiePath);
+
+                    string hash = FormsAuthentication.Encrypt(authticket);
+
+                    var authcookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+
+                    if (authticket.IsPersistent) authcookie.Expires = authticket.Expiration;
+
+                    Response.Cookies.Add(authcookie);
+
+                   
+                }
+
+                return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 
-                return new JsonResult { Data = user, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-
-                //var authticket = new
-                //    FormsAuthenticationTicket(1,
-                //        "admin",
-                //        DateTime.Now,
-                //        DateTime.Now.AddYears(1),
-                //        true,
-                //        "",
-                //        FormsAuthentication.FormsCookiePath);
-
-                //string hash = FormsAuthentication.Encrypt(authticket);
-
-                //var authcookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
-
-                //if (authticket.IsPersistent) authcookie.Expires = authticket.Expiration;
-
-                //Response.Cookies.Add(authcookie);
 
                 //if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 //{
@@ -100,7 +132,9 @@ namespace HotelNWT.Controllers
                     }
                     return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
-        
+
+     
+
         [HttpPost]
         public JsonResult Reservation(reservation r)
         {
@@ -109,12 +143,24 @@ namespace HotelNWT.Controllers
             {
                 using (masterEntities dc = new masterEntities())
                 {
-                    r.user_iduser = 2;
-                 //   var reservation = dc.reservation.Where(a => a.from_date.Equals(r.from_date) && a.type.Equals(r.type)).FirstOrDefault();
-                  //  if (reservation == null)
-                   // {
+
+                    var reservation = (from u in dc.reservation
+                                where u.from_date == r.from_date && u.type == r.type 
+                                select u).FirstOrDefault();
+
+                   if (reservation == null)
+                    {
                         try
                         {
+                            var user = (from u in dc.user
+                                        where u.username == System.Web.HttpContext.Current.User.Identity.Name
+                                               select u).FirstOrDefault();
+
+                            if (user != null)
+                            {
+                                r.user_iduser = user.iduser;
+                            }
+
                             dc.reservation.Add(r);
                             dc.SaveChanges();
                             message = "Successful reservation!";
@@ -130,11 +176,11 @@ namespace HotelNWT.Controllers
                             }
                         }
 
-                    //}
-                    //else
-                    //{
-                      //  message = "Room is reservated!";
-                    //}
+                    }
+                   else
+                   {
+                       message = "Room is reservated!";
+                   }
  
                 }
             }

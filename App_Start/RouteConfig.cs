@@ -17,7 +17,7 @@ namespace HotelNWT
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Login3", id = UrlParameter.Optional }
+                defaults: new { controller = "Data", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

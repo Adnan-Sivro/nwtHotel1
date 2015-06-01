@@ -27,7 +27,7 @@
         <AssociationConnector Association="masterModel.fk_reservation_user1" ManuallyRouted="false" />
         <AssociationConnector Association="masterModel.fk_resource_resource_type" ManuallyRouted="false" />
         <AssociationConnector Association="masterModel.fk_resource_user1" ManuallyRouted="false" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

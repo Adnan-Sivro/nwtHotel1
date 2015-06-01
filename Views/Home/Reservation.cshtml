@@ -1,20 +1,11 @@
 ﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Reservation";
 }
 
+<script src="~/Content/index/js/basic-jquery-slider.js"></script>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>The Royal-Hotel for Website Template | Home :: w3layouts</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="~/Content/index/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="~/Content/index/js/libs/jquery-1.6.2.min.js"></script>
-    <script src="~/Content/index/js/basic-jquery-slider.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
-</head>
-<body>
+
     <div class="header">
         <div class="wrap">
             <div class="wrapper">
@@ -40,15 +31,15 @@
                         </ul>
                     </div>
                 </div>
-             
+                
                 <div class="content">
                     <div class="content-top">
                         <div class="grid">
                             <div class="tariff">
-                                <div class="text">
+                                <div ng-controller="ReservationController" class="text">
                                     <h2>24 hours Reception</h2>
                                     <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>
-                                    <a href="tariff.html"><p><span class="yellow">Read More</span></p></a>
+                                    <button  ng-click="go()" value="logout" />
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -73,12 +64,12 @@
                                             <div class="field">
                                                 <h5>Reservation Information:</h5>
                                                 <label>Check In</label>
-                                                <input type="date" name="checkin" ng-model="Reservation.From_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
+                                                <input type="date" name="checkin" ng-model="Reservation.From_Date" ng-class="submitted?'ng-dirty':''" required autofocus style="width: 150px;" />
 
                                             </div>
                                             <div class="field">
                                                 <label>Check Out</label>
-                                                <input type="date" name="checkout" ng-model="Reservation.To_Date" ng-class="submitted?'ng-dirty':''" required autofocus >
+                                                <input type="date" name="checkout" ng-model="Reservation.To_Date" ng-class="submitted?'ng-dirty':''" required autofocus />
                                             </div>
                                             <div class="field">
                                                 Persons:
@@ -96,7 +87,7 @@
                                                 </select>
                                             </div>
                                             <div class="button">
-                                                <input class="button" type="submit" value="{{submitText}}" class="button" />
+                                                <input class="button" type="submit" value="{{submitText}}" />
                                             </div>
                                         </fieldset>
                                     </form>
@@ -185,9 +176,11 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+
+
+
 
 @section Scripts{
     <script src="~/Scripts/AngularControllers/ReservationController.js"></script>
 }
+

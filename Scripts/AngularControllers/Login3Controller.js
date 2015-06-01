@@ -16,12 +16,15 @@
                });
 
                $scope.Login = function () {
+
                    $scope.Submitted = true;
                    if ($scope.IsFormValid) {
-                       LoginService.GetUser($scope.LoginData).then(function (d) {
-                           if (d.data.username != null) {
+                       var user = LoginService.GetUser($scope.LoginData);
+                        user.then(function (d) {
+                           alert(d);
+                           if (d.Username != null) {
                                $scope.IsLogedIn = true;
-                               $scope.Message = "Successfully login done. Welcome " + d.data.username;
+                               $scope.Message = "Successfully login done. Welcome " + d.Username;
 
                            }
                            else {
@@ -32,16 +35,27 @@
                };
 
            })
-           .factory('LoginService', function ($http) {
+           .factory('LoginService', function ($http, $q) {
                var fac = {};
                
                fac.GetUser = function (d) {
-                   return $http({
+                   var defer = $q.defer();
+                   var test=  $http({
                        url: '/Data/UserLogin',
                        method: 'POST',
                        data: JSON.stringify(d),
                        headers: { 'content-type': 'application/json' }
+                   }).success(function (d) {
+                       // Success callback
+                       defer.resolve(d);
+                   }).error(function (e) {
+                       //Failed Callback
+                       alert('Error!');
+                       defer.reject(e);
                    });
+                   return defer.promise;
+
+                   //return test;
                };
                return fac;
            });
