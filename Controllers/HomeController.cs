@@ -32,11 +32,17 @@ using System;
                     {
                         return View();
                     }
+                    
                     public ActionResult Contact()
                     {
-
                         return View("Contact");
                     }
+
+                    public ActionResult FoodOrder()
+                    {
+                        return View();
+                    }
+
                 }
 
             }

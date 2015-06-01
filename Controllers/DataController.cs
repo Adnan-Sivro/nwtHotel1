@@ -190,7 +190,61 @@ namespace HotelNWT.Controllers
                 return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
 
-        
+
+        [HttpPost]
+        public JsonResult FoodOrder(food_order f)
+        {
+            
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                using (masterEntities dc = new masterEntities())
+                {
+                        try
+                        {
+                            var user = (from u in dc.user
+                                        where u.username == System.Web.HttpContext.Current.User.Identity.Name
+                                        select u).FirstOrDefault();
+                           
+                            var res = (from re in dc.reservation
+                                        where re.user.username == System.Web.HttpContext.Current.User.Identity.Name 
+                                        select re).FirstOrDefault();
+                            var fm = (from m in dc.food_menu
+                                      where m.idfood == f.food_menu_idfood
+                                      select m).FirstOrDefault();
+
+                            var room = res.type;
+                            var name = user.username.ToString() + "from room:" + room.ToString();
+                            f.order_name = name;
+                            
+                            f.order_price = fm.price * f.amount;
+                            
+                            f.user_iduser = user.iduser;
+                            
+                            f.oder_date = DateTime.Now;
+                            dc.food_order.Add(f);
+                            dc.SaveChanges();
+                            message = "Successful order!";
+                        }
+                        catch (DbEntityValidationException dbEx)
+                        {
+                            foreach (var validationErrors in dbEx.EntityValidationErrors)
+                            {
+                                foreach (var validationError in validationErrors.ValidationErrors)
+                                {
+                                    System.Console.WriteLine("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                                }
+                            }
+                        }
+                }
+            }
+            else
+            {
+                message = "Order failed!";
+            }
+            return new JsonResult { Data = message, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
 
     }
 }

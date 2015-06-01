@@ -1252,6 +1252,7 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\AngularControllers\FoodOrderController.js" />
     <Content Include="Scripts\AngularControllers\Login3Controller.js" />
     <Content Include="Scripts\AngularControllers\MapController.js" />
     <Content Include="Scripts\AngularControllers\RegistrationController.js" />
@@ -1292,6 +1293,7 @@
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\FoodOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

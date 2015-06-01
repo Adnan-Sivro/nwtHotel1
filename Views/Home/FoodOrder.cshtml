@@ -1,0 +1,237 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "FoodOrder";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Royal-Hotel for Website Template | Home :: w3layouts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="~/Content/index/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="~/Content/index/js/libs/jquery-1.6.2.min.js"></script>
+   
+    <script src="~/Content/index/js/basic-jquery-slider.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="header">
+        <div class="wrap">
+            <div class="logo">
+                <a href="reservation.html"><img src="~/Content/index/images/logo3.png" /></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/home/reservation">Home</a></li>
+                    <li><a href="tariff.html">Tariff</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li class="active"><a href="/home/foodorder">Food Order</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+
+            <div id="container">
+                <div id="banner">
+                    <ul class="bjqs">
+                        <li><img src="~/Content/index/images/banner3.jpg" title="Automatically generated caption"></li>
+                        <li><img src="~/Content/index/images/banner2.jpg" title="Automatically generated caption"></li>
+                        <li><img src="~/Content/index/images/banner1.jpg" title="Automatically generated caption"></li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function () {
+
+                    $('#banner').bjqs({
+                        'animation': 'slide',
+                        'width': 920,
+                        'height': 450
+                    });
+
+                });
+            </script>
+            <div class="content">
+                <div class="food$beverage">
+                    <div class="content-top">
+                        <div class="food-left" style="width: 650px;">
+                            <div class="pic">
+                                <h2>List of food menus:</h2>
+                                <div class="sub-image">
+                                    <h3>Food Menu 5</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic8.jpg"></a>
+                                </div>
+
+                                <div class="sub-image">
+                                    <h3>Food Menu 4</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic9.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 3</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic11.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 2</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic12.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 1</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic13.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 10</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic14.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 9</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic15.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 8</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic16.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 7</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic6.jpg"></a>
+                                </div>
+                                <div class="sub-image">
+                                    <h3>Food Menu 6</h3>
+                                    <a href="#"><img src="~/Content/index/images/pic19.jpg"></a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div ng-controller="FoodOrderController">
+                            <div class="grid2">
+                                <h4>Order a Food</h4>
+                                <div class="booking">
+                                    <form action="#" id="reservation-form" novalidate name="f1" ng-submit="SaveData(FoodOrder)">
+                                        <div style="color:red">{{message}}</div>
+                                        <fieldset>
+                                            <div class="field">
+                                                <label>Food Menu</label>
+                                                <select class="select1" ng-model="FoodOrder.Food_Menu_Idfood">
+                                                    <option value="1">FoodMenu1</option>
+                                                    <option value="2">FoodMenu2</option>
+                                                    <option value="3">FoodMenu3</option>
+                                                    <option value="4">FoodMenu4</option>
+                                                    <option value="5">FoodMenu5</option>
+                                                    <option value="6">FoodMenu6</option>
+                                                    <option value="7">FoodMenu7</option>
+                                                    <option value="8">FoodMenu8</option>
+                                                    <option value="9">FoodMenu9</option>
+                                                    <option value="10">FoodMenu10</option>
+                                                </select>
+                                            </div>
+                                            <div class="field">
+                                                <label>Quantity</label>
+                                                <select class="select1" ng-model="FoodOrder.Amount">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                </select>
+                                            </div>
+                                            <div class="button">
+                                                <input class="button" type="submit" value="{{submitText}}" />
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-bottom">
+        <div class="wrap">
+            <div class="bottom-gallery">
+                <div class="bottom-image">
+                    <img src="~/Content/index/images/pic.jpg">
+                </div>
+                <div class="bottom-image">
+                    <img src="~/Content/index/images/pic4.jpg">
+                </div>
+                <div class="bottom-image">
+                    <img src="~/Content/index/images/pic10.jpg">
+                </div>
+                <div class="bottom-image1">
+                    <img src="~/Content/index/images/pic7.jpg">
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="wrap">
+            <div class="footer-top">
+                <div class="sub-footer">
+                    <div class="footer-menu">
+                        <h3>Footer Links </h3>
+                        <div class="footer-pic">
+                            <div class="footer-img">
+                                <a href=""><img src="~/Content/index/images/pic22.jpg"></a>
+                            </div>
+                            <div class="footer-img">
+                                <a href=""><img src="~/Content/index/images/pic23.jpg"></a>
+                            </div>
+                            <div class="footer-img">
+                                <a href=""><img src="~/Content/index/images/pic25.jpg"></a>
+                            </div>
+                            <div class="footer-img">
+                                <a href=""><img src="~/Content/index/images/pic24.jpg"></a>
+                            </div>
+                            <div class="footer-img">
+                                <a href=""><img src="~/Content/index/images/pic26.jpg"></a>
+                            </div>
+                            <div class="footer-img">
+                                <a href=""><img src="~/Content/index/images/pic27.jpg"></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-footer1">
+                    <h2>Recent Blogs</h2>
+                    <p> It has survived not only five centuries, but also the leap into electronic. </p>
+                    <p> It has survived not only five centuries, but also the leap into electronic. </p>
+                    <p> It has survived not only five centuries, but also the leap into electronic. </p>
+                </div>
+                <div class="sub-footer1">
+                    <h2>Visit Us</h2>
+                    <ul>
+                        <li><a href="#">simply dummy text of the printing</a></li>
+                        <li><a href="#">simply dummy text of the printing</a></li>
+                        <li><a href="#">simply dummy text of the printing</a></li>
+                        <li><a href="#">simply dummy text of the printing</a></li>
+                        <li><a href="#">simply dummy text of the printing</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="wrap">
+            <div class="copy">
+                <p>&copy; 2015 All rights Reserved | Design by ENES MUJIC and ADNAN SIVRO</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts{
+    <script src="~/Scripts/AngularControllers/FoodOrderController.js"></script>
+}
+
