@@ -55,6 +55,13 @@ using System;
                             return View();
                         else return RedirectToAction("Login3", "Home");
                     }
+
+                    public ActionResult FoodOrderAdmin()
+                    {
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                            return View();
+                        else return RedirectToAction("Login3", "Home");
+                    }
                     public ActionResult Images(int id = 1)
                     {
                         if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)

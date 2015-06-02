@@ -4,6 +4,8 @@
 }
 
 <script src="~/Content/index/js/basic-jquery-slider.js"></script>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <h1>Admin Page</h1>
 <div class="header">
@@ -17,7 +19,7 @@
                     <li class="active"><a href="/home/reservationadmin">Home</a></li>
                     <li><a href="tariff.html">Tariff</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="/home/foodorder">Food Order</a></li>
+                    <li><a href="/home/foodorderadmin">Food Order</a></li>
                     <li><a href="/home/contact">Contact</a></li>
                 </ul>
                 <div class="clear"></div>
@@ -134,9 +136,11 @@
                     <div class="grid1">
                         <div class="tariff">
                             <div class="text">
-                                <h2>Breakfast</h2>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>
-                                <a href="tariff.html"><p><span class="yellow">Read More</span></p></a>
+                                <div id="chart_div" style="width:500px;height:400px">
+                                </div>
+
+                                
+
                             </div>
                             <div class="clear"></div>
                         </div>

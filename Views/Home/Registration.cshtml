@@ -1,4 +1,5 @@
 ﻿ @{
+                Layout = "~/Views/Shared/_Layout.cshtml";
                 ViewBag.Title = "Registration";
             }
            
@@ -26,7 +27,7 @@
                 <link rel="shortcut icon" href="favicon.ico" />
             </head>
 
-    <h2>HotelNWT Registration Page</h2>
+    
 <body class="login">
 
 
@@ -34,15 +35,15 @@
 
         <form class="form-vertical register-form" novalidate name="f1" ng-submit="SaveData(User)">
             <div style="color:red">{{message}}</div>
-            <h3>Sign Up</h3>
+            <h3>@HotelNWT.Resource.SIGNUP</h3>
             <p>Enter your personal details below:</p>
             <div class="control-group">
-                <label class="control-label visible-ie8 visible-ie9">Username</label>
+                <label class="control-label visible-ie8 visible-ie9">@HotelNWT.Resource.USERNAME</label>
                 <div class="controls">
                     <div class="input-icon left">
                         <i class="icon-font"></i>
                         <input class="m-wrap placeholder-no-fix" type="text" ng-model="User.Username" placeholder="Username" name="username" ng-class="submitted?'ng-dirty':''" required autofocus />
-                        <span class="error" ng-show="(f1.username.$dirty || submitted) && f1.username.$error.required">Username required!</span>
+                        <span class="error" ng-show="(f1.username.$dirty || submitted) && f1.username.$error.required">@HotelNWT.Resource.USERNAMEREQ</span>
                     </div>
                 </div>
             </div>
@@ -54,25 +55,25 @@
                     <div class="input-icon left">
                         <i class="icon-envelope"></i>
                         <input class="m-wrap placeholder-no-fix" placeholder="Email" type="email" ng-model="User.Email" name="uEmail" ng-class="submitted?'ng-dirty':''" /> <!-- Not required-->
-                        <span class="error" ng-show="(f1.uEmail.$dirty || submitted) && f1.uEmail.$error.email">Email not valid!</span>
+                        <span class="error" ng-show="(f1.uEmail.$dirty || submitted) && f1.uEmail.$error.email">@HotelNWT.Resource.EMAILNOTVALID</span>
                     </div>
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <label class="control-label visible-ie8 visible-ie9">@HotelNWT.Resource.PASSWORD</label>
                 <div class="controls">
                     <div class="input-icon left">
                         <i class="icon-lock"></i>
                         <input class="m-warp placeholder-no-fix" autocomplete="off" placeholder="Password" type="password" ng-model="User.Password" name="uPassword" ng-class="submitted?'ng-dirty':''" required />
-                        <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">Password required!</span>
+                        <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">@HotelNWT.Resource.PASSWORDREQ</span>
                     </div>
                 </div>
             </div>
 
             <div class="form-actions">
                 <button id="register-back-btn" type="button" class="btn">
-                    <i class="m-icon-swapleft"></i>  Back
+                    <i class="m-icon-swapleft"></i>  @HotelNWT.Resource.BACK
                 </button>
                 <input type="submit" value="{{submitText}}" class="btn green pull-right" />
                 Sign Up <i class=" m-icon-swapright m-icon-white">

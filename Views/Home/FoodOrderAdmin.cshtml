@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "FoodOrder";
+    ViewBag.Title = "FoodOrderAdmin";
 }
 
 
@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="~/Content/index/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <script src="~/Content/index/js/libs/jquery-1.6.2.min.js"></script>
-   
+
     <script src="~/Content/index/js/basic-jquery-slider.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 </head>
@@ -22,41 +22,122 @@
     <div class="header">
         <div class="wrap">
             <div class="logo">
-                <a href="reservation.html"><img src="~/Content/index/images/logo3.png" /></a>
+                <a href="reservationadmin.html"><img src="~/Content/index/images/logo3.png" /></a>
             </div>
             <div class="menu">
                 <ul>
-                    <li><a href="/home/reservation">Home</a></li>
+                    <li><a href="/home/reservationadmin">Home</a></li>
                     <li><a href="tariff.html">Tariff</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li class="active"><a href="/home/foodorder">Food Order</a></li>
+                    <li class="active"><a href="/home/foodorderadmin">Food Order</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <div class="clear"></div>
             </div>
 
-            <div id="container">
-                <div id="banner">
-                    <ul class="bjqs">
-                        <li><img src="~/Content/index/images/banner3.jpg" title="Automatically generated caption"></li>
-                        <li><img src="~/Content/index/images/banner2.jpg" title="Automatically generated caption"></li>
-                        <li><img src="~/Content/index/images/banner1.jpg" title="Automatically generated caption"></li>
-                    </ul>
-                </div>
+            <style>
+                /*Here I will add some css for looks good*/
+                .tabContainer {
+                    max-height: 400px;
+                    overflow: auto;
+                    width: 80%;
+                }
+
+                .tableData {
+                    border-left: solid 1px #D8C3C3;
+                    border-top: solid 1px #D8C3C3;
+                    width: 100%;
+                }
+
+                    .tableData tr {
+                    }
+
+                    .tableData td, .tableData th {
+                        border-right: solid 1px #D8C3C3;
+                        border-bottom: solid 1px #D8C3C3;
+                        text-align: left;
+                        padding: 5px;
+                    }
+
+                    .tableData td {
+                    }
+
+                    .tableData th {
+                        background-color: #FAFAFA;
+                        padding: 7px 5px;
+                        border-bottom-color: #9C9C9C;
+                    }
+
+                .odd {
+                    background-color: #f3f3f3;
+                }
+
+                .even {
+                    background-color: #ffffff;
+                }
+
+                tr.sub {
+                    display: none;
+                }
+
+                .CX {
+                    width: 35px;
+                }
+
+                    .CX span {
+                        font-family: fantasy;
+                        font-size: 15px;
+                        display: block;
+                        width: 100%;
+                        cursor: pointer;
+                        text-align: center;
+                    }
+            </style>
+            <h1 style="color: white;font-size: 26px;">Food Orders: </h1>
+            <div ng-controller="OrderedFoodController">
+                <table class="tableData" border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Order Name</th>
+                            <th>Order Date</th>
+                            <th>Price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="O in OrderedFood">
+                        <tr ng-class-even="'even'" ng-class-odd="'odd'">
+                            <td class="CX"><span>+</span></td>
+                            <td>{{O.order_name}}</td>
+                            <td>{{O.oder_date}}</td>
+                            <td>{{O.order_price}}</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
             <script>
-                (function ($) {
-                    jQuery(document).ready(function ($) {
-                        $('#banner').bjqs({
-                            'animation': 'slide',
-                            'width': 920,
-                            'height': 450
-                        });
+                $(function () {
+                    $('banner').on('click', '.CX span', function () {
+                        //When Click On + sign
+                        if ($(this).text() == '+') {
+                            $(this).text('-');
+                        }
+                        else {
+                            $(this).text('+');
+                        }
+                        $(this).closest('tr') // row of + sign
+                        .next('tr') // next row of + sign
+                        .toggle(); // if show then hide else show
+
                     });
-                })(jQuery);
+                });
             </script>
+
+
             <div class="content">
-                <div class="content">
+                <div class="food$beverage">
                     <div class="content-top">
                         <div class="food-left" style="width: 650px;">
                             <div class="pic">
@@ -232,6 +313,24 @@
 </html>
 
 @section Scripts{
-    <script src="~/Scripts/AngularControllers/FoodOrderController.js"></script>
-}
 
+
+    <script src="~/Scripts/AngularControllers/OrderedFoodController.js"></script>
+    <script>
+        $(function () {
+            $('body').on('click', '.CX span', function () {
+                //When Click On + sign
+                if ($(this).text() == '+') {
+                    $(this).text('-');
+                }
+                else {
+                    $(this).text('+');
+                }
+                $(this).closest('tr') // row of + sign
+                .next('tr') // next row of + sign
+                .toggle(); // if show then hide else show
+
+            });
+        });
+    </script>
+}

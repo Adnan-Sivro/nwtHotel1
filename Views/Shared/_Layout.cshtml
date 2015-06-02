@@ -18,6 +18,16 @@
                 of AngularJS application*@
             <body ng-app="HotelNWT">
                 @RenderBody()
+                <div style="padding:5px">
+                    @* Here I will add Language Switcher *@
+                    @{
+                        
+                            @Html.ActionLink("English", "ChangeLanguage", "Home", new { lang = "en" }, null) <text>&nbsp;</text>
+                            @Html.ActionLink("Bosanski", "ChangeLanguage", "Home", new { lang = "bs" }, null) <text>&nbsp;</text>
+                        
+                        
+                    }
+                </div>
  
                 @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/bundles/bootstrapjs")

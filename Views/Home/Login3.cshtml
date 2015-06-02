@@ -39,19 +39,19 @@
         <form class="form-vertical login-form" novalidate name="f1" ng-submit="Login()">
             <div style="color:rgb(142,2,2)">{{Message}}</div>
             
-                <h3 class="form-title">Login to your account</h3>
+                <h3 class="form-title">@HotelNWT.Resource.LOGINTO</h3>
                 <div class="alert alert-error hide" ng-show="!IsLogedIn">
                     <button class="close" data-dismiss="alert"></button>
-                    <span>Enter any username and password.</span>
+                    <span>@HotelNWT.Resource.ENTERANYUSERNAME</span>
                 </div>
                 <div class="control-group">
-                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    <label class="control-label visible-ie8 visible-ie9">@HotelNWT.Resource.USERNAME</label>
                     <div class="controls">
                         <div class="input-icon left">
                             <i class="icon-user"></i>
 
                             <input class="m-warp placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" ng-model="LoginData.Username" name="cUsername" ng-class="Submitted?'ng-dirty':''" required autofocus />
-                            <span class="error" ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required">Username required</span>
+                            <span class="error" ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required">@HotelNWT.Resource.USERNAMEREQ</span>
 
                         <!-- ng-show="(f1.cUsername.$dirty || Submitted) && f1.cUsername.$error.required" Means I want to show this span only when
         the control cUsername is invalid-->
@@ -60,19 +60,19 @@
                     </div>
                 
             <div class="control-group">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
+                <label class="control-label visible-ie8 visible-ie9">@HotelNWT.Resource.PASSWORD</label>
                 <div class="controls">
                     <div class="input-icon left">
                         <i class="icon-lock"></i>
                         <input class="m-warp placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" ng-model="LoginData.Password" name="cPassword" ng-class="Submitted?'ng-dirty':''" required autofocus />
-                        <span class="error" ng-show="(f1.cPassword.$dirty || Submitted) && f1.cPassword.$error.required">Password required</span>
+                        <span class="error" ng-show="(f1.cPassword.$dirty || Submitted) && f1.cPassword.$error.required">@HotelNWT.Resource.PASSWORD</span>
                         </div>
                     </div>
                 </div>
 
             <div class="form-actions">
                 <label class="checkbox">
-                    <input type="checkbox" name="remember" value="1" /> Remember me
+                    <input type="checkbox" name="remember" value="1" /> @HotelNWT.Resource.REMEMBER
                 </label>
                  <button type="submit" class="btn blue pull-right"  value="Login">
                  Login <i class="m-icon-swapright m-icon-white"></i> 
@@ -80,8 +80,8 @@
             </div>
             <div class="create-account">
                 <p>
-                    Don't have an account yet ?&nbsp;
-                    <a href="/home/registration" id="register-btn">Create an account</a>
+                    @HotelNWT.Resource.DONTHAVEACC ?&nbsp;
+                    <a href="/home/registration" id="register-btn">@HotelNWT.Resource.CREATEACC</a>
                 </p>
             </div>
         </form>

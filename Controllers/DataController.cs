@@ -215,7 +215,7 @@ namespace HotelNWT.Controllers
                                       select m).FirstOrDefault();
 
                             var room = res.type;
-                            var name = user.username.ToString() + "from room:" + room.ToString();
+                            var name = user.username.ToString() + " from room: " + room.ToString();
                             f.order_name = name;
                             
                             f.order_price = fm.price * f.amount;
@@ -274,6 +274,38 @@ namespace HotelNWT.Controllers
             JsonResult res = new JsonResult { Data = CO, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             return res;
         }
+
+        [HttpGet]
+        public JsonResult OrderedFood()
+        {
+            List<FoodOrderData> CO = new List<FoodOrderData>();
+            DateTime danas = DateTime.Now;
+            using (masterEntities dc = new masterEntities())
+            {
+
+                var foodorders = dc.food_order.ToList();
+
+                foreach (var i in foodorders)
+                {
+
+
+                    CO.Add(new FoodOrderData
+                    {
+                        order_name=i.order_name,
+                        oder_date=i.oder_date,
+                        amount=i.amount,
+                        order_price=i.order_price
+                    }
+                        );
+                }
+
+
+            }
+            JsonResult res = new JsonResult { Data = CO, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return res;
+        }
+
+
         public ActionResult signOut()
         {
 
