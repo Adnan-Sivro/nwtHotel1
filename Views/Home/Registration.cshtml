@@ -1,8 +1,8 @@
 ﻿ @{
                 Layout = "~/Views/Shared/_Layout.cshtml";
                 ViewBag.Title = "Registration";
-            }
-           
+
+                }       
 
             <head>
                 <meta charset="utf-8" />
@@ -30,63 +30,65 @@
     
 <body class="login">
 
-
-    <div ng-controller="RegistrationController">
-
-        <form class="form-vertical register-form" novalidate name="f1" ng-submit="SaveData(User)">
-            <div style="color:red">{{message}}</div>
-            <h3>Sign Up</h3>
-            <p>Enter your personal details below:</p>
-            <div class="control-group">
-                <label class="control-label visible-ie8 visible-ie9">Username</label>
-                <div class="controls">
-                    <div class="input-icon left">
-                        <i class="icon-font"></i>
-                        <input class="m-wrap placeholder-no-fix" type="text" ng-model="User.Username" placeholder="Username" name="username" ng-class="submitted?'ng-dirty':''" required autofocus />
-                        <span class="error" ng-show="(f1.username.$dirty || submitted) && f1.username.$error.required">Username required</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="control-group">
-
-                <label class="control-label visible-ie8 visible-ie9">Email</label>
-                <div class="controls">
-                    <div class="input-icon left">
-                        <i class="icon-envelope"></i>
-                        <input class="m-wrap placeholder-no-fix" placeholder="Email" type="email" ng-model="User.Email" name="uEmail" ng-class="submitted?'ng-dirty':''" /> <!-- Not required-->
-                        <span class="error" ng-show="(f1.uEmail.$dirty || submitted) && f1.uEmail.$error.email">Email not valid!</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label visible-ie8 visible-ie9">Password</label>
-                <div class="controls">
-                    <div class="input-icon left">
-                        <i class="icon-lock"></i>
-                        <input class="m-warp placeholder-no-fix" autocomplete="off" placeholder="Password" type="password" ng-model="User.Password" name="uPassword" ng-class="submitted?'ng-dirty':''" required />
-                        <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">Password required</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-actions">
-                <button id="register-back-btn" type="button" class="btn">
-                    <i class="m-icon-swapleft"></i>  Back
-                </button>
-                <input type="submit" value="{{submitText}}" class="btn green pull-right" />
-                Sign Up <i class=" m-icon-swapright m-icon-white">
-                </i>
-
-            </div>
-
-        </form>
-
-
-
-
+    <div class="logo">
+        <img src="~/Content/assets/img/hotel-logo.png" />
     </div>
+    <div ng-controller="RegistrationController">
+        <div class="content">
+            <form class="form-vertical login-form" novalidate name="f1" ng-submit="SaveData(User)">
+                <div style="color:red">{{message}}</div>
+                <h3>Sign Up</h3>
+                <p>Enter your personal details below:</p>
+                <div class="control-group">
+                    <label class="control-label visible-ie8 visible-ie9">Username</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-font"></i>
+                            <input class="m-wrap placeholder-no-fix" type="text" ng-model="User.Username" placeholder="Username" name="username" ng-class="submitted?'ng-dirty':''" required autofocus />
+                            <span class="error" ng-show="(f1.username.$dirty || submitted) && f1.username.$error.required">Username required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+
+                    <label class="control-label visible-ie8 visible-ie9">Email</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-envelope"></i>
+                            <input class="m-wrap placeholder-no-fix" placeholder="Email" type="email" ng-model="User.Email" name="uEmail" ng-class="submitted?'ng-dirty':''" /> <!-- Not required-->
+                            <span class="error" ng-show="(f1.uEmail.$dirty || submitted) && f1.uEmail.$error.email">Email not valid!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label visible-ie8 visible-ie9">Password</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-lock"></i>
+                            <input class="m-warp placeholder-no-fix" autocomplete="off" placeholder="Password" type="password" ng-model="User.Password" name="uPassword" ng-class="submitted?'ng-dirty':''" required />
+                            <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">Password required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button id="register-back-btn" type="button" class="btn">
+                        <a href="/home/login3"> Back </a>
+                    </button>
+                    <input type="submit" value="{{submitText}}" class="btn green" />
+                    <i class=" m-icon-swapright m-icon-white">
+                    </i>
+
+                </div>
+
+            </form>
+
+
+
+            </div>
+        </div>
 
     <script src="~/Content/assets/plugins/jquery-1.10.1.min.js" type="text/javascript"></script>
     <script src="~/Content/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>

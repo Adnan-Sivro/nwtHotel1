@@ -164,6 +164,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Models\FoodOrderData.cs" />
     <Compile Include="Models\ReservationData.cs" />
     <Compile Include="MSreplication_options.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -1293,10 +1294,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login3.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
-    <Content Include="Views\Home\Reservation.cshtml" />
+    <None Include="Views\Home\Reservation.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\FoodOrder.cshtml" />
     <Content Include="Views\Home\ReservationAdmin.cshtml" />
+    <Content Include="Views\Home\Images.cshtml" />
+    <Content Include="Views\Data\AddImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

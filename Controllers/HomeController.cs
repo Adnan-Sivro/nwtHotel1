@@ -31,7 +31,16 @@ using System;
                     public ActionResult Reservation() // Implement Cascade dropdownlist
                     {
                         if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
-                            return View();
+                        {
+                            if (System.Web.HttpContext.Current.User.Identity.Name == "admin")
+                            {
+                                return View("ReservationAdmin");
+                            }
+                            else
+                            {
+                                return View();
+                            }
+                        }
                         else return RedirectToAction("Login3", "Home");
                     }
                     

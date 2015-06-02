@@ -23,15 +23,10 @@
                         user.then(function (d) {                  
                            if (d.Username != null) {
                                $scope.IsLogedIn = true;
-                               $http({
-                                   url: '/home/reservation',
-                                   method: 'GET'
-                               }).success(function (data, status, headers, config) {
-                                   $scope.color = data;
-                               });
+                               alert('Login sussessful!');
                            }
                            else {
-                               alert('Invalid Credential!');
+                               alert('Username or password incorrect!');
                            }
                        });
                    }
