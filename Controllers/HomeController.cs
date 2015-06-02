@@ -30,22 +30,43 @@ using System;
 
                     public ActionResult Reservation() // Implement Cascade dropdownlist
                     {
-                        return View();
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                            return View();
+                        else return RedirectToAction("Login3", "Home");
                     }
                     
                     public ActionResult Contact()
                     {
-                        return View("Contact");
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                            return View("Contact");
+                        else return RedirectToAction("Login3", "Home");
                     }
 
                     public ActionResult FoodOrder()
                     {
-                        return View();
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                            return View();
+                        else return RedirectToAction("Login3", "Home");
                     }
 
                     public ActionResult ReservationAdmin()
                     {
-                        return View();
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                            return View();
+                        else return RedirectToAction("Login3", "Home");
+                    }
+                    public ActionResult Images(int id = 1)
+                    {
+                        if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            using (masterEntities contextObj = new masterEntities())
+                            {
+                                var getAllImage = contextObj.image.ToList();
+                                return View(getAllImage);
+                            }
+                        }
+                        else return RedirectToAction("Login3", "Home");
+
                     }
 
                 }

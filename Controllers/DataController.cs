@@ -30,19 +30,7 @@ namespace HotelNWT.Controllers
             return RedirectToAction("Login3", "Home");
 
         }
-        public virtual ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            foreach (var cookie in Request.Cookies.AllKeys)
-            {
-                Request.Cookies.Remove(cookie);
-            }
-            foreach (var cookie in Response.Cookies.AllKeys)
-            {
-                Response.Cookies.Remove(cookie);
-            }
-            return RedirectToAction("Login3", "Home");
-        }
+      
 
         [HttpPost]
         public JsonResult UserLogin(LoginData d)
@@ -285,6 +273,55 @@ namespace HotelNWT.Controllers
             }
             JsonResult res = new JsonResult { Data = CO, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             return res;
+        }
+        public ActionResult signOut()
+        {
+
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            // clear authentication cookie
+            HttpCookie cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            cookie1.Expires = DateTime.Now.AddYears(-1);
+            Response.Cookies.Add(cookie1);
+
+
+
+            return RedirectToAction("login3", "home");
+
+        }
+        [HttpGet]
+        public ActionResult AddImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddImage(HttpPostedFileBase ImagePath)
+        {
+            if (ImagePath != null)
+            {
+                string pic = System.IO.Path.GetFileName(ImagePath.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Content/images"), pic);
+                ImagePath.SaveAs(path);
+                using (masterEntities myContext = new masterEntities())
+                {
+                    int k = 1;
+                    image galleryobj = new image
+                    {
+                        imagePath = "~/Content/images/" + pic,
+                        resource_type_idresource_type = k
+                    };
+
+                    myContext.image.Add(galleryobj);
+                    myContext.SaveChanges();
+
+                }
+
+            }
+
+            return RedirectToAction("Images", "Home");
         }
 
 

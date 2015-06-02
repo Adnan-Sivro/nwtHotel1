@@ -15,10 +15,8 @@ namespace HotelNWT
     public partial class image
     {
         public int idimage { get; set; }
-        public string name { get; set; }
-        public string location { get; set; }
-        public string description { get; set; }
         public int resource_type_idresource_type { get; set; }
+        public string imagePath { get; set; }
     
         public virtual resource_type resource_type { get; set; }
     }

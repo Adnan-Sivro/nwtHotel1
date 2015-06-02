@@ -20,12 +20,10 @@
                    $scope.Submitted = true;
                    if ($scope.IsFormValid) {
                        var user = LoginService.GetUser($scope.LoginData);
-                        user.then(function (d) {
-                           alert(d);
+                        user.then(function (d) {                  
                            if (d.Username != null) {
                                $scope.IsLogedIn = true;
-                               $scope.Message = "Successfully login done. Welcome " + d.Username;
-
+                               
                            }
                            else {
                                alert('Invalid Credential!');

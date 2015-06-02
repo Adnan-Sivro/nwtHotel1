@@ -35,9 +35,7 @@
             <PropertyRef Name="resource_type_idresource_type" />
           </Key>
           <Property Name="idimage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="location" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="45" />
+          <Property Name="imagePath" Type="varchar(max)" Nullable="false" />
           <Property Name="resource_type_idresource_type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="keycard">
@@ -57,8 +55,6 @@
           <Property Name="latitude" Type="float" Nullable="false" />
           <Property Name="longitude" Type="float" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MSreplication_options">
           <Key>
             <PropertyRef Name="optname" />
@@ -115,8 +111,6 @@ warning 6002: The table/view 'master.dbo.MSreplication_options' does not have a 
           <Property Name="price" Type="float" Nullable="false" />
           <Property Name="qunatity" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="spt_fallback_db">
           <Key>
             <PropertyRef Name="xserver_name" />
@@ -136,8 +130,6 @@ warning 6002: The table/view 'master.dbo.spt_fallback_db' does not have a primar
           <Property Name="status" Type="smallint" Nullable="false" />
           <Property Name="version" Type="smallint" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="spt_fallback_dev">
           <Key>
             <PropertyRef Name="xserver_name" />
@@ -160,8 +152,6 @@ warning 6002: The table/view 'master.dbo.spt_fallback_dev' does not have a prima
           <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="phyname" Type="varchar" MaxLength="127" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="spt_fallback_usg">
           <Key>
             <PropertyRef Name="xserver_name" />
@@ -183,8 +173,6 @@ warning 6002: The table/view 'master.dbo.spt_fallback_usg' does not have a prima
           <Property Name="sizepg" Type="int" Nullable="false" />
           <Property Name="vstart" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'master.dbo.spt_monitor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="spt_monitor">
           <Key>
             <PropertyRef Name="lastrun" />
@@ -331,74 +319,15 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="keycard" EntityType="Self.keycard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="location" EntityType="Self.location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="reservation" EntityType="Self.reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="resource" EntityType="Self.resource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="resource_type" EntityType="Self.resource_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MSreplication_options" EntityType="Self.MSreplication_options" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[MSreplication_options].[optname] AS [optname], 
-[MSreplication_options].[value] AS [value], 
-[MSreplication_options].[major_version] AS [major_version], 
-[MSreplication_options].[minor_version] AS [minor_version], 
-[MSreplication_options].[revision] AS [revision], 
-[MSreplication_options].[install_failures] AS [install_failures]
-FROM [dbo].[MSreplication_options] AS [MSreplication_options]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="spt_fallback_db" EntityType="Self.spt_fallback_db" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[spt_fallback_db].[xserver_name] AS [xserver_name], 
-[spt_fallback_db].[xdttm_ins] AS [xdttm_ins], 
-[spt_fallback_db].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
-[spt_fallback_db].[xfallback_dbid] AS [xfallback_dbid], 
-[spt_fallback_db].[name] AS [name], 
-[spt_fallback_db].[dbid] AS [dbid], 
-[spt_fallback_db].[status] AS [status], 
-[spt_fallback_db].[version] AS [version]
-FROM [dbo].[spt_fallback_db] AS [spt_fallback_db]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="spt_fallback_dev" EntityType="Self.spt_fallback_dev" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[spt_fallback_dev].[xserver_name] AS [xserver_name], 
-[spt_fallback_dev].[xdttm_ins] AS [xdttm_ins], 
-[spt_fallback_dev].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
-[spt_fallback_dev].[xfallback_low] AS [xfallback_low], 
-[spt_fallback_dev].[xfallback_drive] AS [xfallback_drive], 
-[spt_fallback_dev].[low] AS [low], 
-[spt_fallback_dev].[high] AS [high], 
-[spt_fallback_dev].[status] AS [status], 
-[spt_fallback_dev].[name] AS [name], 
-[spt_fallback_dev].[phyname] AS [phyname]
-FROM [dbo].[spt_fallback_dev] AS [spt_fallback_dev]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[spt_fallback_usg].[xserver_name] AS [xserver_name], 
-[spt_fallback_usg].[xdttm_ins] AS [xdttm_ins], 
-[spt_fallback_usg].[xdttm_last_ins_upd] AS [xdttm_last_ins_upd], 
-[spt_fallback_usg].[xfallback_vstart] AS [xfallback_vstart], 
-[spt_fallback_usg].[dbid] AS [dbid], 
-[spt_fallback_usg].[segmap] AS [segmap], 
-[spt_fallback_usg].[lstart] AS [lstart], 
-[spt_fallback_usg].[sizepg] AS [sizepg], 
-[spt_fallback_usg].[vstart] AS [vstart]
-FROM [dbo].[spt_fallback_usg] AS [spt_fallback_usg]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[spt_monitor].[lastrun] AS [lastrun], 
-[spt_monitor].[cpu_busy] AS [cpu_busy], 
-[spt_monitor].[io_busy] AS [io_busy], 
-[spt_monitor].[idle] AS [idle], 
-[spt_monitor].[pack_received] AS [pack_received], 
-[spt_monitor].[pack_sent] AS [pack_sent], 
-[spt_monitor].[connections] AS [connections], 
-[spt_monitor].[pack_errors] AS [pack_errors], 
-[spt_monitor].[total_read] AS [total_read], 
-[spt_monitor].[total_write] AS [total_write], 
-[spt_monitor].[total_errors] AS [total_errors]
-FROM [dbo].[spt_monitor] AS [spt_monitor]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="spt_values" EntityType="Self.spt_values" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [spt_values].[name] AS [name], 
@@ -475,11 +404,9 @@ FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
             <PropertyRef Name="resource_type_idresource_type" />
           </Key>
           <Property Name="idimage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="resource_type_idresource_type" Type="Int32" Nullable="false" />
           <NavigationProperty Name="resource_type" Relationship="Self.fk_image_resource_type1" FromRole="image" ToRole="resource_type" />
+          <Property Name="imagePath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="keycard">
           <Key>
@@ -842,10 +769,8 @@ FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
           <EntitySetMapping Name="image">
             <EntityTypeMapping TypeName="masterModel.image">
               <MappingFragment StoreEntitySet="image">
+                <ScalarProperty Name="imagePath" ColumnName="imagePath" />
                 <ScalarProperty Name="idimage" ColumnName="idimage" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="resource_type_idresource_type" ColumnName="resource_type_idresource_type" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1026,7 +951,7 @@ FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
