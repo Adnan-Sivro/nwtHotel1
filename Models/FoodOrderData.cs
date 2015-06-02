@@ -14,7 +14,6 @@ namespace HotelNWT.Models
         public double order_price { get; set; }
         public int user_iduser { get; set; }
         public int food_menu_idfood { get; set; }
-
         public virtual food_menu food_menu { get; set; }
         public virtual user user { get; set; }
     }
