@@ -43,6 +43,7 @@ namespace HotelNWT
         public DbSet<spt_fallback_usg> spt_fallback_usg { get; set; }
         public DbSet<spt_monitor> spt_monitor { get; set; }
         public DbSet<spt_values> spt_values { get; set; }
+        public DbSet<Logovi> Logovi { get; set; }
     
         public virtual int sp_MScleanupmergepublisher()
         {

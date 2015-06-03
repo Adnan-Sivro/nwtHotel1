@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HotelNWT.Models;
+using System.Net.Mail;
 using System.Web.Security;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
 using System.Configuration;
+using System.Net;
 namespace HotelNWT.Controllers
 {
     public class DataController : Controller
@@ -356,7 +358,86 @@ namespace HotelNWT.Controllers
             return RedirectToAction("Images", "Home");
         }
 
+        bool POSALjIMAIL = false;
 
+        [HttpPost]
+        public JsonResult RegistracijaJson(user korisnik)
+        {
+            Guid tmpGuid = Guid.NewGuid();
+            var parametri = new Dictionary<string, object>{
+                {"Username", korisnik.username},
+                {"Password", korisnik.password},
+                {"Email", korisnik.email},
+                {"GUID", tmpGuid.ToString().ToLower()}
+            };
+            try
+            {
+                masterEntities dc = new masterEntities();
+                korisnik.confirmation_key = "1";
+                korisnik.created_date = DateTime.Now;
+                korisnik.activated_date = DateTime.Now;
+                dc.user.Add(korisnik);
+                dc.SaveChanges();
+                user u = dc.user.Where(a => a.username == korisnik.username).FirstOrDefault();
+                int ID = Convert.ToInt32(u.iduser);
+                korisnik.iduser = ID;
+
+                SendEmail("Potvrda Registracije", string.Format(@"
+                Dobro došli na našu stranicu i čestitamo na uspješnoj registraciji.
+                Da biste potvrdili registraciju, kliknite na link ispod:
+                   http://www.nwt.somee.com/Account/PotvrdaRegistracijeJson/{0}?guid={1}", korisnik.iduser, tmpGuid), korisnik.email);
+
+                return new JsonResult { Data = "Email za potvrdu registracije je poslan. Provjerite Vaš inbox!", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+            }
+            catch (Exception ex)
+            {
+                Logovi log = new Logovi
+                {
+                    Datum = DateTime.Now,
+                    Sadrzaj = ex.ToString(),
+                    Tip = 3
+                };
+                masterEntities dc = new masterEntities();
+                dc.Logovi.Add(log);
+
+                return new JsonResult { Data = "Došlo je do greške", JsonRequestBehavior=JsonRequestBehavior.DenyGet };
+            }
+        }
+        private bool SendEmail(string subject, string body, string mailTo)
+        {
+
+            string fromMail = "enesmujic07@gmail.com";
+
+           MailMessage mail = new MailMessage(fromMail, mailTo, subject, body);
+
+            var client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                UseDefaultCredentials = false,
+                EnableSsl = true,
+                Timeout = 20000,
+                Credentials = new NetworkCredential("enesmujic07", "07071991enes")
+            };
+            try
+            {
+                client.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+                Logovi log = new Logovi
+                {
+                    Datum = DateTime.Now,
+                    Sadrzaj = ex.ToString(),
+                    Tip = 3
+                };
+                masterEntities dc = new masterEntities();
+                dc.Logovi.Add(log);
+                return false;
+            }
+
+            return true;
+        }
 
     }
 }

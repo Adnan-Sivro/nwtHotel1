@@ -55,6 +55,17 @@
           <Property Name="latitude" Type="float" Nullable="false" />
           <Property Name="longitude" Type="float" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'master.dbo.Logovi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Logovi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sadržaj" Type="varchar(max)" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="Tip" Type="int" />
+        </EntityType>
         <EntityType Name="MSreplication_options">
           <Key>
             <PropertyRef Name="optname" />
@@ -328,6 +339,14 @@ warning 6002: The table/view 'master.dbo.spt_values' does not have a primary key
           <EntitySet Name="spt_fallback_usg" EntityType="Self.spt_fallback_usg" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="spt_monitor" EntityType="Self.spt_monitor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logovi" EntityType="Self.Logovi" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Logovi].[id] AS [id], 
+[Logovi].[Sadržaj] AS [Sadržaj], 
+[Logovi].[Datum] AS [Datum], 
+[Logovi].[Tip] AS [Tip]
+FROM [dbo].[Logovi] AS [Logovi]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="spt_values" EntityType="Self.spt_values" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [spt_values].[name] AS [name], 
@@ -735,7 +754,17 @@ FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
           </AssociationSet>
           <FunctionImport Name="sp_MScleanupmergepublisher" />
           <FunctionImport Name="sp_MSrepl_startup" />
+          <EntitySet Name="Logovi" EntityType="masterModel.Logovi" />
         </EntityContainer>
+        <EntityType Name="Logovi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sadržaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <Property Name="Tip" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -936,6 +965,16 @@ FROM [dbo].[spt_values] AS [spt_values]</DefiningQuery>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_MScleanupmergepublisher" FunctionName="masterModel.Store.sp_MScleanupmergepublisher" />
           <FunctionImportMapping FunctionImportName="sp_MSrepl_startup" FunctionName="masterModel.Store.sp_MSrepl_startup" />
+          <EntitySetMapping Name="Logovi">
+            <EntityTypeMapping TypeName="masterModel.Logovi">
+              <MappingFragment StoreEntitySet="Logovi">
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Sadržaj" ColumnName="Sadržaj" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

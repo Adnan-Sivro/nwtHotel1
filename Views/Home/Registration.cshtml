@@ -72,6 +72,17 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="control-group">
+                    <label class="control-label visible-ie8 visible-ie9">Confrim your password</label>
+                    <div class="controls">
+                        <div class="input-icon left">
+                            <i class="icon-lock"></i>
+                            <input class="m-warp placeholder-no-fix" autocomplete="off" placeholder="Confrim your password" type="password" ng-model="password_verify" name="uPassword2" ng-class="submitted?'ng-dirty':''" required />
+                            <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">Password required</span>
+                        </div>
+                    </div>
+                </div>
 
                 <div>
                         <a class="btn" href="/home/login3"> Back </a>

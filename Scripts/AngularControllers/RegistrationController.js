@@ -19,21 +19,40 @@
                   if ($scope.submitText == 'Save') {
                       $scope.submitted = true;
                       $scope.message = '';
+                     
 
-                      if ($scope.isFormValid) {
-                          $scope.submitText = 'Please Wait...';
-                          $scope.User = data;
-                          RegistrationService.SaveFormData($scope.User).then(function (d) {
-                              alert(d);
-                              if (d == 'Success') {
-                                  //have to clear form here
-                                  ClearForm();
-                              }
-                              $scope.submitText = "Save";
-                          });
-                      }
-                      else {
-                          $scope.message = 'Please fill required fields value';
+                          if ($scope.isFormValid) {
+                              $scope.submitText = 'Please Wait...';
+                              $scope.User = data;
+                              if ($scope.User.Password == $scope.password_verify) {
+
+                                  RegistrationService.registracija($scope.User).then(function (response) {
+                                      if (response.success) {
+                                          alert('Email za potvrdu registracije je poslan. Provjerite Vaš inbox!');
+                                      } else {
+                                          $scope.error = response.message;
+                                          $scope.errorMessage = $sce.trustAsHtml(response.message);
+                                          $scope.dataLoading = false;
+                                      }
+                                  })
+
+
+                /*              RegistrationService.SaveFormData($scope.User).then(function (d) {
+                                  alert(d);
+                                  if (d == 'Success') {
+                                      //have to clear form here
+                                      ClearForm();
+                                  }
+                                  $scope.submitText = "Save";
+                              });*/
+                          }
+                          else {
+                                  $scope.message = "Different passwords!";
+
+                          }
+                          } else {
+                              $scope.message = 'Please fill required fields value';
+
                       }
                   }
               }
@@ -64,5 +83,38 @@
                   });
                   return defer.promise;
               }
-              return fac;
+
+              fac.registracija = function (data) {
+                      var defer = $q.defer();
+                      $http({
+                          url: '/Data/RegistracijaJson',
+                          method: 'POST',
+                          data: JSON.stringify(data),
+                          headers: { 'content-type': 'application/json' }
+                      }).success(function (d) {
+                          // Success callback
+                          defer.resolve(d);
+                      }).error(function (e) {
+                          //Failed Callback
+                          alert('Error!');
+                          defer.reject(e);
+                      });
+                      return defer.promise;
+                  }
+
+                  /* $http.post('/Account/RegistracijaJson', { username: username, password: password, Email: email })
+                      .success(function (response) {
+                          if (response !== true) {
+                              callback({ success: false, message: response });
+                          } else {
+                              var newResponse = { success: true };
+                              callback(newResponse);
+                          }
+                      }).error(function (e) {
+                          //Failed Callback
+                          alert('Registration failed!');
+                      })*/
+                  return fac;
+              
           });
+
