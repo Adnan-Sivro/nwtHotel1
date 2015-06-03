@@ -21,14 +21,14 @@
                       $scope.message = '';
                      
 
-                          if ($scope.isFormValid) {
-                              $scope.submitText = 'Please Wait...';
-                              $scope.User = data;
+                          if ($scope.isFormValid) {                              
                               if ($scope.User.Password == $scope.password_verify) {
-
+                                  $scope.submitText = 'Please Wait...';
+                                  $scope.User = data;
                                   RegistrationService.registracija($scope.User).then(function (response) {
-                                      if (response.success) {
+                                      if (response =='Success') {
                                           alert('Email za potvrdu registracije je poslan. Provjerite Vaš inbox!');
+                                          $scope.submitText = 'Save';
                                       } else {
                                           $scope.error = response.message;
                                           $scope.errorMessage = $sce.trustAsHtml(response.message);
@@ -92,11 +92,11 @@
                           data: JSON.stringify(data),
                           headers: { 'content-type': 'application/json' }
                       }).success(function (d) {
-                          // Success callback
+                          alert('Email confirmation has been send to your email.Check your inbox!');
                           defer.resolve(d);
                       }).error(function (e) {
                           //Failed Callback
-                          alert('Error!');
+                          alert('Registation failed!');
                           defer.reject(e);
                       });
                       return defer.promise;

@@ -20,7 +20,7 @@ namespace HotelNWT.Controllers
 
         public ActionResult Index()
         {
-            if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated )
             {
                 if (System.Web.HttpContext.Current.User.Identity.Name == "admin")
                 {
@@ -43,34 +43,41 @@ namespace HotelNWT.Controllers
 
                 var model = new LoginData();
 
-                if (user != null)
+                if (user.confirmation_key == "Aktivan")
                 {
-                    model.Username = user.username;
-                    model.Password = user.password;
-                    model.RememberMe = d.RememberMe;
+                    if (user != null)
+                    {
+                        model.Username = user.username;
+                        model.Password = user.password;
+                        model.RememberMe = d.RememberMe;
 
-                    var authticket = new
-                        FormsAuthenticationTicket(1,
-                            user.username,
-                            DateTime.Now,
-                            DateTime.Now.AddYears(1),
-                            model.RememberMe,
-                            "",
-                            FormsAuthentication.FormsCookiePath);
+                        var authticket = new
+                            FormsAuthenticationTicket(1,
+                                user.username,
+                                DateTime.Now,
+                                DateTime.Now.AddYears(1),
+                                model.RememberMe,
+                                "",
+                                FormsAuthentication.FormsCookiePath);
 
-                    string hash = FormsAuthentication.Encrypt(authticket);
+                        string hash = FormsAuthentication.Encrypt(authticket);
 
-                    var authcookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+                        var authcookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
 
-                    if (authticket.IsPersistent) authcookie.Expires = authticket.Expiration;
+                        if (authticket.IsPersistent) authcookie.Expires = authticket.Expiration;
 
-                    Response.Cookies.Add(authcookie);
+                        Response.Cookies.Add(authcookie);
 
-                   
+
+                    }
+
+
+                    return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
                 }
-
-                return new JsonResult { Data = model, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-                
+                else 
+                {
+                    return new JsonResult { Data="notactivated",  JsonRequestBehavior = JsonRequestBehavior.DenyGet };
+                }
 
                 //if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                 //{
@@ -385,7 +392,7 @@ namespace HotelNWT.Controllers
                 SendEmail("Potvrda Registracije", string.Format(@"
                 Dobro došli na našu stranicu i čestitamo na uspješnoj registraciji.
                 Da biste potvrdili registraciju, kliknite na link ispod:
-                   http://www.nwt.somee.com/Account/PotvrdaRegistracijeJson/{0}?guid={1}", korisnik.iduser, tmpGuid), korisnik.email);
+                   http://localhost:52474/Data/PotvrdaRegistracijeJson/{0}?guid={1}", korisnik.iduser, tmpGuid), korisnik.email);
 
                 return new JsonResult { Data = "Email za potvrdu registracije je poslan. Provjerite Vaš inbox!", JsonRequestBehavior = JsonRequestBehavior.AllowGet };
 
@@ -437,6 +444,16 @@ namespace HotelNWT.Controllers
             }
 
             return true;
+        }
+        [HttpGet]
+        public ActionResult PotvrdaRegistracijeJson(int id, string guid)
+        {
+
+            masterEntities db = new masterEntities();
+            user u=db.user.Find(id);
+            u.confirmation_key = "Aktivan";
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }

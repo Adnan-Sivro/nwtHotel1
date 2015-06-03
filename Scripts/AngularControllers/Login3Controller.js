@@ -25,7 +25,11 @@
                                $scope.IsLogedIn = true;
                                alert('Login sussessful!');
                            }
-                           else {
+                           else if (d == "notactivated")
+                                 {
+                                   alert('Your acount not activated');
+                               }
+                            else{
                                alert('Username or password incorrect!');
                            }
                        });
